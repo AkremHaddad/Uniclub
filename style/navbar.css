@@ -1,0 +1,96 @@
+nav {
+  overflow: hidden;
+  background-color: #a699e0;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav li {
+  height: 50px;
+  display: flex; /* Ensure flexbox is used for centering */
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+}
+
+.searchbar {
+  background-color: aliceblue;
+  border-radius: 2vh;
+  text-align: center;
+  outline: none;
+  border: none;
+  max-width: 150px;
+  max-height: 30px;
+  width: 100%; /* Make the input take up available space in li */
+}
+
+.searchbar :last-child {
+  width: 100%;
+}
+
+nav a,
+nav input {
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+nav a:hover {
+  background-color: #5e9abd;
+}
+
+nav li:first-child {
+  margin-right: auto;
+}
+
+#logo {
+  height: 9vh;
+  min-height: 70px;
+  max-height: 80px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sidebar li {
+  width: 100%;
+}
+
+.sidebar a {
+  width: 100%;
+}
+
+.menuButton {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .hideOnMobile {
+    display: none;
+  }
+  .menuButton {
+    display: block;
+  }
+}

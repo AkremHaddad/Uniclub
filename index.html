@@ -6,18 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Uniclub</title>
     <link rel="icon" type="image/svg+xml" href="media/Logo.svg" />
-    <link rel="stylesheet" href="Style/main.css" />
-    <link rel="stylesheet" href="Style/navbar.css" />
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-    <script src="JavaScript/jquery-ui-1.13.2.custom/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/navbar.css" />
+    <link rel="stylesheet" href="style/log.css" />
   </head>
 
   <body>
-    <script src="JavaScript/animations.js"></script>
-    <script src="JavaScript/main.js"></script>
+    <!-- -------------------------------------Navbar------------------------------------------>
+    <nav>
+      <ul class="sidebar">
+        <li onclick="HideSidebar()">
+          <a><img src="media/close1.svg" /></a>
+        </li>
+        <li>
+          <input class="searchbar" type="text" value="Search..." />
+        </li>
+        <li>
+          <a href="">calendar</a>
+        </li>
+        <li>
+          <a href="">notifications</a>
+        </li>
+        <li>
+          <a href="">support</a>
+        </li>
+        <li class="logIn">
+          <a href="javascript:void(0);" onclick="LoginPopup()">Login</a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a href="">Uniclub</a>
+        </li>
+        <li class="hideOnMobile">
+          <input class="searchbar" type="text" value="Search..." />
+        </li>
+        <li class="hideOnMobile">
+          <a href="">calendar</a>
+        </li>
+        <li class="hideOnMobile">
+          <a href="">notifications</a>
+        </li>
+        <li class="hideOnMobile">
+          <a href="">support</a>
+        </li>
+        <li class="logIn, hideOnMobile">
+          <a href="javascript:void(0);" onclick="LoginPopup()">Login</a>
+        </li>
+        <li class="menuButton" onclick="ShowSidebar()">
+          <a><img src="media/menu.svg" /></a>
+        </li>
+      </ul>
+    </nav>
+
+    <!------------------------------------Login Popup---------------------------------------->
+    <div class="popup">
+      <div id="LoginPopup" class="popContent">
+        <h2>
+          Welcome To <br />
+          UniClub
+        </h2>
+        <img id="logoForm" src="media/Logo.svg" alt="" />
+        <form action="" id="log_form">
+          <span>Email</span>
+          <input type="text" class="log_input" />
+          <span>Password</span>
+          <input type="text" class="log_input" />
+          <button id="log_butt">LOGIN</button>
+        </form>
+        <p>Don't have an account?</p>
+        <button id="sign_butt">Sign up Here</button> <br />
+      </div>
+    </div>
+
+    <script src="JavaScript/navbar.js"></script>
+    <script src="JavaScript/log.js"></script>
   </body>
 </html>

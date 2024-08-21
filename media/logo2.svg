@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="2200" viewBox="0 0 2200 2200">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+        text-anchor: middle;
+        font-family: "Mocking Bird";
+        text-transform: uppercase;
+      }
+
+      .cls-1 {
+        font-size: 390.916px;
+        fill: #6380bb;
+      }
+
+      .cls-2 {
+        font-size: 394.32px;
+        fill: #c8a54d;
+      }
+    </style>
+  </defs>
+  <text id="U" class="cls-1" transform="translate(713.583 1099.67) scale(2.425 2.132)"><tspan x="0">U</tspan></text>
+  <text id="C" class="cls-2" transform="translate(1359.508 1198.474) scale(3.087 2.113)"><tspan x="0">C</tspan></text>
+</svg>

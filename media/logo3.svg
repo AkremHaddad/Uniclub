@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2200" height="2200" viewBox="0 0 2200 2200">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 387.5px;
+      }
+
+      .cls-1, .cls-3 {
+        text-anchor: middle;
+        fill: #6380bb;
+        font-family: "Cooper Black";
+        text-transform: uppercase;
+      }
+
+      .cls-2 {
+        fill: #c8a54d;
+        font-size: 208.333px;
+      }
+
+      .cls-3 {
+        stroke: #fff;
+        stroke-linejoin: round;
+        stroke-width: 1px;
+        font-size: 390.916px;
+      }
+
+      .cls-4 {
+        fill: none;
+        stroke-width: 10px;
+        fill-rule: evenodd;
+        stroke: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="960" y1="1369" x2="960" y2="655" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c89860" stop-opacity="0.996"/>
+      <stop offset="0.542" stop-color="#828e9a" stop-opacity="0.996"/>
+      <stop offset="1" stop-color="#4784ca"/>
+    </linearGradient>
+  </defs>
+  <text id="Club" class="cls-1" x="879.965" y="1229.153"><tspan x="879.965">C<tspan class="cls-2">lub</tspan></tspan></text>
+  <text id="Uni" class="cls-3" x="1090.855" y="1043.409"><tspan x="1090.855">U<tspan class="cls-2">ni</tspan></tspan></text>
+  <path class="cls-4" d="M409,655H1511v714H409V655Z"/>
+</svg>
