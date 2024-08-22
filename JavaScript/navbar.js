@@ -4,8 +4,10 @@ function ShowSidebar() {
 }
 
 function HideSidebar() {
-  const sidebar = document.querySelector(".sidebar");
-  sidebar.style.display = "none";
+  var sidebar = document.querySelector(".sidebar");
+  if (sidebar) {
+    sidebar.style.display = "none";
+  }
 }
 
 var searchbars = document.getElementsByClassName("searchbar");
@@ -19,3 +21,13 @@ for (var i = 0; i < searchbars.length; i++) {
     this.value = "Search...";
   });
 }
+
+function hideSidebarOnResize() {
+  var sidebar = document.querySelector(".sidebar");
+
+  if (window.innerWidth > 800) {
+    sidebar.style.display = "none";
+  }
+}
+window.addEventListener("resize", hideSidebarOnResize);
+document.addEventListener("DOMContentLoaded", hideSidebarOnResize);

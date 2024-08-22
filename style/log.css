@@ -7,11 +7,17 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 5;
 }
+
 .popContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
   align-items: center;
+  justify-content: center;
   width: 30vw;
+  min-width: 600px;
+  min-height: 500px;
   font-family: "Inter", sans-serif;
   color: white;
   position: absolute;
@@ -20,7 +26,7 @@
   transform: translate(-50%, -50%);
   background-color: rgba(82, 119, 153, 1);
   padding: 20px;
-  min-width: 600px;
+  border-radius: 15px;
 }
 
 #logoForm {
@@ -28,17 +34,44 @@
   max-width: 100px;
 }
 
-#logButton {
+#logButt {
+  margin-top: 5px;
+  height: 3.5vh;
+  min-width: 200px;
+  color: white;
+  background-color: #4c6984;
   border: none;
-  all: unset; /* Resets all properties */
-  display: block; /* Makes the button a block-level element */
-  width: 100%; /* Makes the button fill the width of its parent */
-  height: 100%; /* Makes the button fill the height of its parent */
-  cursor: pointer; /* Adds a pointer cursor on hover */
-  background-color: transparent; /* Removes background color */
-  color: inherit; /* Inherits text color from parent */
-  text-align: center; /* Centers text inside the button */
-  padding: 0; /* Removes default padding */
-  border: none; /* Removes default border */
-  font: inherit; /* Inherits font styles from parent */
+  cursor: pointer;
+}
+
+#logButt:hover {
+  color: rgb(56, 49, 77);
+  background-color: #aec0d1;
+}
+
+#logForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+}
+
+.logInput {
+  min-height: 3.5vh;
+  min-width: 200px;
+}
+
+#signButt {
+  text-decoration: none;
+  border: none;
+  padding: 5px, 5px;
+  height: 3vh;
+  width: 8vw;
+  min-width: 100px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#signButt:hover {
+  background-color: rgb(167, 200, 221);
 }

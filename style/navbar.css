@@ -1,6 +1,6 @@
 nav {
   overflow: hidden;
-  background-color: #a699e0;
+  background-color: #5da5d4;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -20,11 +20,12 @@ nav li {
 }
 
 .searchbar {
-  background-color: aliceblue;
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 2vh;
-  text-align: center;
+  text-align: left;
   outline: none;
   border: none;
+  margin-right: 1vw;
   max-width: 150px;
   max-height: 30px;
   width: 100%; /* Make the input take up available space in li */
@@ -92,5 +93,14 @@ nav li:first-child {
   }
   .menuButton {
     display: block;
+  }
+  .sidebar {
+    display: block; /* Ensure it's displayed on small screens */
+  }
+}
+
+@media (min-width: 801px) {
+  .sidebar {
+    display: none; /* Ensure it's hidden on large screens */
   }
 }

@@ -21,37 +21,23 @@
         <li>
           <input class="searchbar" type="text" value="Search..." />
         </li>
-        <li>
-          <a href="">calendar</a>
-        </li>
-        <li>
-          <a href="">notifications</a>
-        </li>
-        <li>
-          <a href="">support</a>
-        </li>
-        <li class="logIn">
-          <a href="javascript:void(0);" onclick="LoginPopup()">Login</a>
+        <li><a href="">calendar</a></li>
+        <li><a href="">notifications</a></li>
+        <li><a href="">support</a></li>
+        <li id="loginButton1" class="loginButton">
+          <a href="javascript:void(0);">Login</a>
         </li>
       </ul>
       <ul>
-        <li>
-          <a href="">Uniclub</a>
-        </li>
+        <li><a href="">Uniclub</a></li>
         <li class="hideOnMobile">
           <input class="searchbar" type="text" value="Search..." />
         </li>
-        <li class="hideOnMobile">
-          <a href="">calendar</a>
-        </li>
-        <li class="hideOnMobile">
-          <a href="">notifications</a>
-        </li>
-        <li class="hideOnMobile">
-          <a href="">support</a>
-        </li>
-        <li class="logIn, hideOnMobile">
-          <a href="javascript:void(0);" onclick="LoginPopup()">Login</a>
+        <li class="hideOnMobile"><a href="">calendar</a></li>
+        <li class="hideOnMobile"><a href="">notifications</a></li>
+        <li class="hideOnMobile"><a href="">support</a></li>
+        <li id="loginButton2" class="loginButton hideOnMobile">
+          <a href="javascript:void(0);">Login</a>
         </li>
         <li class="menuButton" onclick="ShowSidebar()">
           <a><img src="media/menu.svg" /></a>
@@ -60,22 +46,22 @@
     </nav>
 
     <!------------------------------------Login Popup---------------------------------------->
-    <div class="popup">
+    <div id="popup1" class="popup">
       <div id="LoginPopup" class="popContent">
         <h2>
           Welcome To <br />
           UniClub
         </h2>
         <img id="logoForm" src="media/Logo.svg" alt="" />
-        <form action="" id="log_form">
+        <form action="" id="logForm">
           <span>Email</span>
-          <input type="text" class="log_input" />
+          <input type="text" class="logInput" />
           <span>Password</span>
-          <input type="text" class="log_input" />
-          <button id="log_butt">LOGIN</button>
+          <input type="text" class="logInput" />
+          <button id="logButt">LOGIN</button>
         </form>
         <p>Don't have an account?</p>
-        <button id="sign_butt">Sign up Here</button> <br />
+        <button id="signButt">Sign up Here</button>
       </div>
     </div>
 
