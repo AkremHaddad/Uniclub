@@ -4,98 +4,155 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/navbar.css" />
+    <link rel="stylesheet" href="style/log.css" />
+    <link rel="stylesheet" href="style/signup.css" />
   </head>
   <body>
     <!---------------------------------signup section--------------------------------------->
-    <div id="sign_pop" class="popup">
-      <div id="sign_pop_content" class="pop_content">
-        <form action="">
-          <div id="part1">
-            <h2>Please enter your details below</h2>
-            <div id="ava_contain">
-              <img id="def_ava" src="media/Default_avatar.svg" alt="" />
-              <img id="add_ava" src="media/plus_sign.svg" alt="" />
-              <input
-                type="file"
-                id="file_input"
-                style="display: none"
-                accept="image/*"
+    <div id="part1">
+      <form
+        action="includes/signup.php"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <div class="formColumn">
+          <label for="first_name">First Name:</label>
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            maxlength="16"
+            required
+          />
+
+          <label for="last_name">Last Name:</label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            maxlength="16"
+            required
+          />
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" maxlength="35" required />
+
+          <label for="facebook">Facebook:</label>
+          <input type="text" id="facebook" name="facebook" maxlength="32" />
+
+          <label for="instagram">Instagram:</label>
+          <input type="text" id="instagram" name="instagram" maxlength="255" />
+
+          <label for="linkedin">LinkedIn:</label>
+          <input type="text" id="linkedin" name="linkedin" maxlength="255" />
+        </div>
+
+        <div class="formColumn">
+          <div class="file-upload">
+            <label for="profile_image" class="upload-button"
+              >Choose Profile Image</label
+            >
+            <input
+              type="file"
+              id="profile_image"
+              name="profile_image"
+              accept="image/*"
+              onchange="previewImage(event)"
+            />
+            <div id="profileImagePreview" class="image-preview">
+              <img
+                id="profileImage"
+                src="media/Default_avatar.svg"
+                alt="Profile Image Preview"
               />
             </div>
-            <div id="bio">
-              <span class="side_title">Bio</span>
-              <textarea name="" id="" cols="30" rows="5"></textarea>
-            </div>
-            <div id="social_links">
-              <span id="span_face"> Facebook </span>
-              <input type="text" class="soc_inp" id="face_inp" /> <br />
-              <span id="span_linked">LinkedIn</span>
-              <input type="text" class="soc_inp" id="linked_inp" />
-            </div>
-            <div>
-              <span id="cv_att"> CV Attachement</span>
-              <input type="file" id="file_inp" accept="application/pdf" />
-            </div>
-            <button id="next_butt">Next</button>
           </div>
 
-          <div id="part2">
-            <h2>Choose your Interests</h2>
-            <div id="int_contain">
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Robotics</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Coding</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Art</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Movies</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Sport</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Gaming</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Conference</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Soft Skills</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Frontend</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Backend</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Aerospace</span>
-              </div>
-              <div class="interest">
-                <img src="media/plus_sign_no_border.svg" alt="" />
-                <span>Others</span>
-              </div>
-            </div>
-            <button id="fin_butt">Finish</button>
-            <button id="back_butt">Back</button>
-          </div>
-        </form>
-      </div>
+          <label for="class">Class:</label>
+          <input type="text" id="class" name="class" maxlength="8" required />
+
+          <label for="phone_number">Phone Number:</label>
+          <input
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            maxlength="15"
+          />
+
+          <label for="bio">Bio:</label>
+          <textarea id="bio" name="bio"></textarea>
+
+          <label for="cv">CV:</label>
+          <input type="file" id="cv" name="cv" />
+
+          <button type="submit">Register</button>
+        </div>
+      </form>
     </div>
+
+    <!-- <div id="part2">
+      <h2>Choose your Interests</h2>
+      <div id="int_contain">
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Robotics</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Coding</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Art</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Movies</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Sport</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Gaming</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Conference</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Soft Skills</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Frontend</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Backend</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Aerospace</span>
+        </div>
+        <div class="interest">
+          <img src="media/plus_sign_no_border.svg" alt="" />
+          <span>Others</span>
+        </div>
+      </div>
+      <button id="fin_butt">Finish</button>
+      <button id="back_butt">Back</button>
+    </div> -->
+
+    <script src="JavaScript/navbar.js"></script>
+    <script src="JavaScript/log.js"></script>
+    <script src="JavaScript/signup.js"></script>
   </body>
 </html>
