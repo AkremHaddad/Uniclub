@@ -1,7 +1,7 @@
 // Function to show the login popup
 function showLoginPopup() {
   var popup = document.getElementById("popup1");
-  var loginPopup = document.getElementById("LoginPopup");
+  var loginPopup = document.getElementById("container");
 
   if (popup && loginPopup) {
     popup.style.display = "block";
@@ -12,7 +12,7 @@ function showLoginPopup() {
 // Function to close the login popup
 function closeLoginPopup(event) {
   var popup = document.getElementById("popup1");
-  var popupContent = document.getElementById("LoginPopup");
+  var popupContent = document.getElementById("container");
 
   if (popup && popupContent) {
     var clickedInsidePopup = popupContent.contains(event.target);
@@ -46,28 +46,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-///////////////////////////////////////
-// Tabbed component
+const signUpButton = document.getElementById("signUp");
+const signInButton = document.getElementById("signIn");
+const container = document.getElementById("container");
 
-const logsign_container = document.querySelector(".logsign_container");
-const tabs = document.querySelectorAll(".logsign_button");
-const tabsContent = document.querySelectorAll(".logsign_tabs");
+signUpButton.addEventListener("click", () => {
+  container.classList.add("right-panel-active");
+});
 
-logsign_container.addEventListener("click", function (e) {
-  const clicked = e.target.closest(".logsign_button");
-
-  // Guard clause
-  if (!clicked) return;
-
-  // Remove active classes
-  tabs.forEach((t) => t.classList.remove("logsign_button_active"));
-  tabsContent.forEach((c) => c.classList.remove("logsign_tab_active"));
-
-  // Activate tab
-  clicked.classList.add("logsign_button_active");
-
-  // Activate content area
-  document
-    .querySelector(`.logsign_tab--${clicked.dataset.tab}`)
-    .classList.add("logsign_tab_active");
+signInButton.addEventListener("click", () => {
+  container.classList.remove("right-panel-active");
 });
