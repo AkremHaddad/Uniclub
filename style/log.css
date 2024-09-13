@@ -25,6 +25,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(82, 119, 153, 1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
   padding: 20px;
   border-radius: 15px;
 }
@@ -74,4 +75,35 @@
 
 #signButt:hover {
   background-color: rgb(167, 200, 221);
+}
+
+.logsign_container {
+  display: flex;
+  flex-direction: row;
+  gap: 3vw;
+  margin-bottom: 3vh;
+}
+
+.logsign_button {
+  display: block;
+  height: 5vh;
+  min-width: 200px;
+  color: white;
+  background-color: #072036;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.logsign_button_active {
+  display: block;
+  margin-top: -3vh;
+}
+
+.logsign_tabs {
+  display: none;
+}
+
+.logsign_tab_active {
+  display: block;
 }

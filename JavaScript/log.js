@@ -45,3 +45,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+///////////////////////////////////////
+// Tabbed component
+
+const logsign_container = document.querySelector(".logsign_container");
+const tabs = document.querySelectorAll(".logsign_button");
+const tabsContent = document.querySelectorAll(".logsign_tabs");
+
+logsign_container.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".logsign_button");
+
+  // Guard clause
+  if (!clicked) return;
+
+  // Remove active classes
+  tabs.forEach((t) => t.classList.remove("logsign_button_active"));
+  tabsContent.forEach((c) => c.classList.remove("logsign_tab_active"));
+
+  // Activate tab
+  clicked.classList.add("logsign_button_active");
+
+  // Activate content area
+  document
+    .querySelector(`.logsign_tab--${clicked.dataset.tab}`)
+    .classList.add("logsign_tab_active");
+});
