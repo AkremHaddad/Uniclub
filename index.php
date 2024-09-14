@@ -1,3 +1,8 @@
+<?php
+require_once 'includes/config_session.inc.php';
+require_once 'includes/signup_view.inc.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,11 +34,11 @@
         <li><a href="">notifications</a></li>
         <li><a href="">support</a></li>
         <li id="loginButton1" class="loginButton">
-          <a href="javascript:void(0);">account</a>
+          <a href="sign_log.php">account</a>
         </li>
       </ul>
       <ul>
-        <li><a href="">Uniclub</a></li>
+        <li><a href="index.php">Uniclub</a></li>
         <li class="hideOnMobile">
           <input class="searchbar" type="text" value="Search..." />
         </li>
@@ -41,7 +46,7 @@
         <li class="hideOnMobile"><a href="">notifications</a></li>
         <li class="hideOnMobile"><a href="">support</a></li>
         <li id="loginButton2" class="loginButton hideOnMobile">
-          <a href="javascript:void(0);">account</a>
+          <a href="sign_log.php">account</a>
         </li>
         <li class="menuButton" onclick="ShowSidebar()">
           <a><img src="media/menu.svg" /></a>
@@ -50,10 +55,10 @@
     </nav>
 
     <!------------------------------------Login/signup Popup---------------------------------------->
-    <div id="popup1" class="popup">
+    <!-- <div id="popup1" class="popup">
       <div id="container" class="container popContent">
         <div class="form-container sign-up-container">
-          <form action="#">
+          <form action="includes/signup.inc.php" method="post">
             <h1>Create Account</h1>
             <div class="social-container">
               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -63,14 +68,17 @@
               <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Sign Up</button>
+            <input placeholder="Email" name="email" />
+            <input type="password" placeholder="Password" name="pwd" />
+            <button type="submit">Sign Up</button>
           </form>
+
+          <?php
+          check_signup_errors();
+          ?>
         </div>
         <div class="form-container sign-in-container">
-          <form action="#">
+          <form action="includes/login.inc.php" method="post">
             <h1>Sign in</h1>
             <div class="social-container">
               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -80,8 +88,8 @@
               <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your account</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="email" placeholder="Email" name="email" />
+            <input type="password" placeholder="Password" name="pwd" />
             <a href="#">Forgot your password?</a>
             <button>Sign In</button>
           </form>
@@ -103,9 +111,21 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <script src="JavaScript/navbar.js"></script>
     <script src="JavaScript/log.js"></script>
+    <script>
+      // window.onload = function () {
+      //   const urlParams = new URLSearchParams(window.location.search);
+      //   if (
+      //     urlParams.get("popup") === "signup" &&
+      //     urlParams.get("error") === "true"
+      //   ) {
+      //     showLoginPopup();
+      //     container.classList.add("right-panel-active");
+      //   }
+      // };
+    </script>
   </body>
 </html>
