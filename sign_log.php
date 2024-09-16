@@ -71,15 +71,15 @@ require_once 'includes/signup_view.inc.php';
             <input placeholder="Email" name="email" />
             <input type="password" placeholder="Password" name="pwd" />
             <button type="submit">Sign Up</button>
+            <?php
+            check_signup_errors();
+            ?>
           </form>
 
-          <?php
-          check_signup_errors();
-          ?>
         </div>
         <div class="form-container sign-in-container">
           <form action="includes/login.inc.php" method="post">
-            <h1>Sign in</h1>
+            <h1>Log in</h1>
             <div class="social-container">
               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
               <a href="#" class="social"
@@ -93,7 +93,12 @@ require_once 'includes/signup_view.inc.php';
             <a href="#">Forgot your password?</a>
             <button>Sign In</button>
           </form>
+          <?php
+          check_signup_errors();
+          ?>
         </div>
+
+
         <div class="overlay-container">
           <div class="overlay">
             <div class="overlay-panel overlay-left">
@@ -115,17 +120,5 @@ require_once 'includes/signup_view.inc.php';
 
     <script src="JavaScript/navbar.js"></script>
     <script src="JavaScript/log.js"></script>
-    <script>
-      // window.onload = function () {
-      //   const urlParams = new URLSearchParams(window.location.search);
-      //   if (
-      //     urlParams.get("popup") === "signup" &&
-      //     urlParams.get("error") === "true"
-      //   ) {
-      //     showLoginPopup();
-      //     container.classList.add("right-panel-active");
-      //   }
-      // };
-    </script>
   </body>
 </html>

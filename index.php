@@ -115,17 +115,5 @@ require_once 'includes/signup_view.inc.php';
 
     <script src="JavaScript/navbar.js"></script>
     <script src="JavaScript/log.js"></script>
-    <script>
-      // window.onload = function () {
-      //   const urlParams = new URLSearchParams(window.location.search);
-      //   if (
-      //     urlParams.get("popup") === "signup" &&
-      //     urlParams.get("error") === "true"
-      //   ) {
-      //     showLoginPopup();
-      //     container.classList.add("right-panel-active");
-      //   }
-      // };
-    </script>
   </body>
 </html>

@@ -230,3 +230,9 @@
   height: 40px;
   width: 40px;
 }
+
+.form_error {
+  margin: 0;
+  font-size: small;
+  color: red;
+}

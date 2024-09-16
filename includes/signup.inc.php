@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     create_user($pdo, $email, $pwd);
-    header("Location ../index.php?signup=success");
+    header("Location: ../sign_log.php?signup=success");
 
     $pdo = null;
     $stmt = null;
@@ -43,9 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     die("Query failed" . $e->getMessage());
   }
 
-
-
-}else {
+} else {
   header("Location ../index.php");
   die();
 }
