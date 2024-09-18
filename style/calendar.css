@@ -1,0 +1,244 @@
+.body1 {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.calendar_container {
+  display: flex;
+  background-color: #44d0d4;
+  height: 100%;
+  width: 100%;
+}
+
+.current_day {
+  background-color: var(--main-bg-color-5);
+  background-color: #527799;
+  background: -webkit-linear-gradient(
+    to right,
+    var(--main-bg-color-5),
+    var(--main-bg-color-3)
+  );
+  background: linear-gradient(
+    to right,
+    var(--main-bg-color-5),
+    var(--main-bg-color-3)
+  );
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  border: black solid 1px;
+}
+
+.current_day p {
+  margin-top: 2vh;
+  font-size: 3vw;
+  color: #fff;
+}
+
+.current_day span {
+  font-size: 10vw;
+  color: #fff;
+}
+
+.calendar2 {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+
+.currentDayEvents {
+  flex: 2;
+  overflow-y: scroll;
+  border-top: black solid 1px;
+}
+
+.calendar_nav {
+  width: 100%;
+  height: 10vh;
+  min-height: 50px;
+  background-color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: black solid 1px;
+  border-left: none;
+}
+
+.calendar_nav .icons {
+  display: flex;
+}
+
+.calendar_nav .icons span:hover {
+  background: #f2f2f2;
+  color: var(--accent-color);
+}
+
+.calendar_nav .icons span {
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #ffffff;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+.icons span:last-child {
+  margin-right: 30px;
+}
+
+.calendar {
+  background-color: var(--main-bg-color-2);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border-right: #000000 solid 1px;
+}
+
+.calendar ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+  justify-content: center;
+  color: #000000;
+  padding: 0;
+  margin: 0;
+}
+
+.calendar li {
+  width: calc(100% / 7);
+  text-align: center;
+  justify-content: center;
+  align-self: center;
+  /* border: black solid 1px; */
+}
+
+.weeks {
+  flex: 1;
+}
+
+.days {
+  flex: 6;
+}
+
+.weeks li {
+  align-items: center;
+  justify-content: center;
+  font-size: 3vw;
+  cursor: default;
+}
+
+.currentMonth {
+  margin-left: 20px;
+  font-size: large;
+}
+
+.days li {
+  text-align: center;
+  justify-content: center;
+  align-self: center;
+  font-size: 3vw;
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
+
+.days li.inactive {
+  color: #808080;
+}
+.days li.active {
+  color: #fff;
+}
+
+.days li::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 4vw;
+  width: 4vw;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.days li.active::before {
+  background: var(--accent-color);
+}
+.days li:not(.active):hover::before {
+  background: var(--main-bg-color-1);
+}
+
+.event {
+  width: 36vw;
+  margin-left: 1.5vw;
+  background-color: var(--accent-color);
+  border-radius: 5px;
+  border: black solid 1px;
+  margin-top: 2vh;
+}
+
+.eventTitle {
+  font-size: 3vw;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+}
+
+.eventDiscription {
+  margin-left: 1vw;
+  font-size: 1.5vw;
+  margin-bottom: 2vh;
+}
+
+.eventPhotos {
+  width: 90%;
+  max-width: 36vw;
+  overflow: hidden;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+}
+
+.photo-container {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+  background-color: #ddd; /* fallback color if image is not loaded */
+  overflow: hidden;
+  border: black solid 1px;
+  border-radius: 5px;
+}
+
+.photo-container img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will ensure the image covers the container */
+  transform: translate(-50%, -50%);
+}
+
+.view-more {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none; /* Initially hidden, show on hover */
+}
+
+.photo-container:hover .view-more {
+  display: block; /* Show the button on hover */
+}

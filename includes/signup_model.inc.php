@@ -28,3 +28,9 @@ function set_user(object $pdo, string $email, string $pwd){
   $stmt->execute();
 
 } 
+
+
+
+
+
+

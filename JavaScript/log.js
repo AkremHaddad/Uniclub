@@ -57,3 +57,19 @@ signUpButton.addEventListener("click", () => {
 signInButton.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
+
+// window.onload = function () {
+//   const urlParams = new URLSearchParams(window.location.search);
+//   console.log("URL Params:", urlParams.toString()); // Log URL params
+//   if (urlParams.get("signup") === "failed") {
+//     container.classList.add("right-panel-active-fast");
+//     console.log("Conditions met, popup should show.");
+//   } else {
+//     console.log("Conditions not met.");
+//   }
+// };
+
+// const signUpButton1 = document.getElementById("signin1");
+// signUpButton.addEventListener("click", () => {
+//   container.classList.add("right-panel-active-fast");
+// });

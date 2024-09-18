@@ -232,7 +232,39 @@
 }
 
 .form_error {
-  margin: 0;
+  margin: 0 !important;
   font-size: small;
-  color: red;
+}
+
+/* Instant panel change version */
+.container.right-panel-active-fast .sign-in-container {
+  transform: translateX(100%);
+  transition: none; /* Disable animation */
+}
+
+.container.right-panel-active-fast .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  transition: none; /* Disable animation */
+}
+
+.container.right-panel-active-fast .overlay-container {
+  transform: translateX(-100%);
+  transition: none; /* Disable animation */
+}
+
+.container.right-panel-active-fast .overlay {
+  transform: translateX(50%);
+  transition: none; /* Disable animation */
+}
+
+.container.right-panel-active-fast .overlay-left {
+  transform: translateX(0);
+  transition: none; /* Disable animation */
+}
+
+.container.right-panel-active-fast .overlay-right {
+  transform: translateX(20%);
+  transition: none; /* Disable animation */
 }

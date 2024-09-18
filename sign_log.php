@@ -15,9 +15,9 @@ require_once 'includes/signup_view.inc.php';
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/navbar.css" />
-    <link rel="stylesheet" href="style/log.css" />
+    <link rel="stylesheet" href="../pfa_final/style/style.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/navbar.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/log.css?<?php echo time(); ?>" type="text/css"/>
   </head>
 
   <body>
@@ -30,7 +30,7 @@ require_once 'includes/signup_view.inc.php';
         <li>
           <input class="searchbar" type="text" value="Search..." />
         </li>
-        <li><a href="">calendar</a></li>
+        <li><a href="calendar.php">calendar</a></li>
         <li><a href="">notifications</a></li>
         <li><a href="">support</a></li>
         <li id="loginButton1" class="loginButton">
@@ -42,7 +42,7 @@ require_once 'includes/signup_view.inc.php';
         <li class="hideOnMobile">
           <input class="searchbar" type="text" value="Search..." />
         </li>
-        <li class="hideOnMobile"><a href="">calendar</a></li>
+        <li class="hideOnMobile"><a href="calendar.php">calendar</a></li>
         <li class="hideOnMobile"><a href="">notifications</a></li>
         <li class="hideOnMobile"><a href="">support</a></li>
         <li id="loginButton2" class="loginButton hideOnMobile">
@@ -70,12 +70,11 @@ require_once 'includes/signup_view.inc.php';
             <span>or use your email for registration</span>
             <input placeholder="Email" name="email" />
             <input type="password" placeholder="Password" name="pwd" />
-            <button type="submit">Sign Up</button>
+            <button id="signin1" type="submit">Sign Up</button>
             <?php
             check_signup_errors();
             ?>
           </form>
-
         </div>
         <div class="form-container sign-in-container">
           <form action="includes/login.inc.php" method="post">
@@ -118,7 +117,7 @@ require_once 'includes/signup_view.inc.php';
       </div>
     </div>
 
-    <script src="JavaScript/navbar.js"></script>
-    <script src="JavaScript/log.js"></script>
-  </body>
+    <script src="JavaScript/navbar.js<?php echo time(); ?>"></script>
+    <script src="JavaScript/log.js?<?php echo time(); ?>"></script>
+    </body>
 </html>

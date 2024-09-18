@@ -18,3 +18,7 @@ function check_signup_errors() {
     echo '<p>Signup success!</p>';
   }
 }
+
+
+
+

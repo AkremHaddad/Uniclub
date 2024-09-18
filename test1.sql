@@ -55,7 +55,9 @@ CREATE TABLE event (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     clubId INT NOT NULL,
     title TEXT,
-    description TEXT,
+    description1 TEXT,
+    photos BLOB, 
+    date1 date,
     FOREIGN KEY (clubId) REFERENCES club(id)
 );
 

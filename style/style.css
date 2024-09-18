@@ -2,11 +2,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* overflow-y: hidden;
-  overflow-x: hidden; */
+  overflow-y: hidden;
+  overflow-x: hidden;
+  user-select: none;
 }
 
 .body {
   min-height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --main-bg-color-1: #90e0ef;
+  --main-bg-color-2: #48cae4;
+  --main-bg-color-3: #00b4d8;
+  --main-bg-color-4: #0096c7;
+  --main-bg-color-5: #0077b6;
+
+  --main-grey-shade: #ffffff;
+
+  --accent-color: #b84064;
 }
