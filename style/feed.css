@@ -1,0 +1,146 @@
+.feed {
+  align-self: center;
+  width: clamp(50vw, 50vw, 100vw);
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+}
+
+.post {
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.post_text {
+  font-size: clamp(0.8rem, 1.5vw, 2rem);
+  margin-bottom: 2vh;
+  margin-left: 1vw;
+}
+
+.post > div:first-child {
+  display: flex;
+  margin-left: 1vw;
+  margin-top: 1vh;
+  gap: 0.5vw;
+}
+
+.post > div:first-child img {
+  width: 3vw;
+  height: 3vw;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.post > div:first-child span {
+  font-size: clamp(1rem, 2vw, 2.5rem);
+  align-self: center;
+}
+
+.user_reaction {
+  margin-left: 2vw;
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+  display: flex;
+  gap: 1vw;
+  /* border-top: #ddd 1px solid; */
+}
+
+ion-icon {
+  font-size: clamp(1rem, 2vw, 2.5rem);
+}
+
+.user_reaction > div {
+  /* background-color: #e5ebee;
+  border-radius: 15px; */
+  width: 6vw;
+  height: 6.5vh;
+  max-height: 6.5vh;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: #e4e4e4;
+  border-radius: 25px;
+}
+
+.user_reaction span {
+  font-size: clamp(1rem, 2vw, 2.5rem);
+}
+
+/* posts photos */
+.post-photos {
+  display: grid;
+  gap: 2px;
+  width: 100%; /* Make it take full width */
+  max-height: 600px; /* Maximum height to prevent overflow */
+}
+
+.post-photos img {
+  width: 100%;
+  object-fit: cover; /* Ensures images maintain their aspect ratio */
+}
+
+.photos-1 img {
+  height: auto; /* Full width, auto height */
+  max-height: 600px; /* Optional: Limit max height */
+}
+
+.photos-2 {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.photos-2 img {
+  height: 300px; /* Each image takes half the available space */
+  object-fit: cover;
+}
+
+.photos-3 {
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.photos-3 img:first-child {
+  grid-column: span 2; /* First photo spans both columns */
+  height: 400px; /* Larger first photo */
+}
+
+.photos-3 img:nth-child(2),
+.photos-3 img:nth-child(3) {
+  height: 200px; /* Smaller bottom two photos */
+}
+
+.photos-4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.photos-4 img {
+  height: 300px; /* Equal size for all photos */
+}
+
+.user_reaction div div {
+  padding-right: 1vw;
+  padding-left: 1vw;
+  margin-top: 1vh;
+}
+
+.user_reaction div span {
+  padding-right: 0.5vw;
+}
+
+.user_reaction > div:hover {
+  background-color: #bebebe;
+}
+
+.user_reaction > div:hover > div,
+.user_reaction > div:hover > span {
+  /* background-color: #bebebe; */
+  color: white;
+}

@@ -18,6 +18,7 @@ require_once 'includes/signup_view.inc.php';
     <link rel="stylesheet" href="../pfa_final/style/style.css?<?php echo time(); ?>" type="text/css"/>
     <link rel="stylesheet" href="../pfa_final/style/navbar.css?<?php echo time(); ?>" type="text/css"/>
     <link rel="stylesheet" href="../pfa_final/style/log.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/feed.css?<?php echo time(); ?>" type="text/css"/>
   </head>
 
   <body>
@@ -54,62 +55,16 @@ require_once 'includes/signup_view.inc.php';
       </ul>
     </nav>
 
-    <!------------------------------------Login/signup Popup---------------------------------------->
-    <!-- <div id="popup1" class="popup">
-      <div id="container" class="container popContent">
-        <div class="form-container sign-up-container">
-          <form action="includes/signup.inc.php" method="post">
-            <h1>Create Account</h1>
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"
-                ><i class="fab fa-google-plus-g"></i
-              ></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your email for registration</span>
-            <input placeholder="Email" name="email" />
-            <input type="password" placeholder="Password" name="pwd" />
-            <button type="submit">Sign Up</button>
-          </form>
-        </div>
-        <div class="form-container sign-in-container">
-          <form action="includes/login.inc.php" method="post">
-            <h1>Sign in</h1>
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"
-                ><i class="fab fa-google-plus-g"></i
-              ></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your account</span>
-            <input type="email" placeholder="Email" name="email" />
-            <input type="password" placeholder="Password" name="pwd" />
-            <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
-          </form>
-        </div>
-        <div class="overlay-container">
-          <div class="overlay">
-            <div class="overlay-panel overlay-left">
-              <h1>Welcome Back!</h1>
-              <p>
-                To keep connected with us please login with your personal info
-              </p>
-              <button class="ghost" id="signIn">Sign In</button>
-            </div>
-            <div class="overlay-panel overlay-right">
-              <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
-              <button class="ghost" id="signUp">Sign Up</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    <!-------------------------------------------feed----------------------------------------------->
+    <div class="feed">
+      <div class="feed-container">
 
-    <script src="JavaScript/navbar.js<?php echo time(); ?>"></script>
+      </div>
+    </div>
+    <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
     <script src="JavaScript/log.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/feed.js?<?php echo time(); ?>"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>
 </html>

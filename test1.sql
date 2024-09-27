@@ -1,7 +1,6 @@
 CREATE TABLE users (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    first_name VARCHAR(16) NOT NULL,
-    last_name VARCHAR(16) NOT NULL,
+    full_name VARCHAR(16) NOT NULL,
     email VARCHAR(35) NOT NULL,
     facebook VARCHAR(32),
     instagram VARCHAR(255),
@@ -58,6 +57,10 @@ CREATE TABLE event (
     description1 TEXT,
     photos BLOB, 
     date1 date,
+    loveReacts INT,
+    upvotes INT,
+    downvotes INT,
+    bookmarks INT,
     FOREIGN KEY (clubId) REFERENCES club(id)
 );
 
@@ -65,6 +68,11 @@ CREATE TABLE posts (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     clubId INT NOT NULL,
     text TEXT NOT NULL,
-    photos BLOB,
+    photo1 BLOB,
+    photo2 BLOB,
+    photo3 BLOB,
+    photo4 BLOB,
     FOREIGN KEY (clubId) REFERENCES club(id)
 );
+
+

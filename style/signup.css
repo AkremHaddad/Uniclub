@@ -8,7 +8,7 @@ body {
   background-color: #a0bfdb; /* Optional: For visual clarity */
 }
 
-#part1 {
+.currentTab {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
   gap: 20px; /* Space between columns */
@@ -23,7 +23,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
 }
 
-#part1 form {
+.currentTab form {
   display: contents; /* Allow the grid container to handle the layout */
 }
 
@@ -32,21 +32,22 @@ body {
   flex-direction: column;
 }
 
-#part1 label {
+.currentTab label {
   margin-bottom: 5px;
 }
 
-#part1 input[type="text"],
-#part1 input[type="email"],
-#part1 input[type="password"],
-#part1 textarea {
+.currentTab input[type="text"],
+.currentTab input[type="email"],
+.currentTab input[type="password"],
+.currentTab textarea {
   margin-bottom: 10px;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-#part1 button {
+.currentTab button,
+.currentTab2 button {
   align-self: flex-end;
   margin-top: auto;
   padding: 10px 20px;
@@ -56,7 +57,7 @@ body {
   cursor: pointer;
 }
 
-#part1 button:hover {
+.currentTab button:hover {
   background-color: #aec0d1;
   color: rgb(56, 49, 77);
 }
@@ -71,10 +72,6 @@ body {
 .file-upload label {
   margin-bottom: 10px;
   font-weight: bold;
-}
-
-#profile_image {
-  display: none; /* Hide the default file input */
 }
 
 .image-preview {
@@ -93,4 +90,132 @@ body {
   max-width: 100%;
   max-height: 100%;
   border-radius: 50%;
+}
+
+.profile-pic {
+  color: transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
+
+  input {
+    display: none;
+  }
+
+  img {
+    position: absolute;
+    object-fit: cover;
+    width: 165px;
+    height: 165px;
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+    border-radius: 100px;
+    z-index: 0;
+  }
+
+  .-label {
+    cursor: pointer;
+    height: 165px;
+    width: 165px;
+  }
+
+  &:hover {
+    .-label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      color: rgb(250, 250, 250);
+      transition: background-color 0.2s ease-in-out;
+      border-radius: 100px;
+      margin-bottom: 0;
+    }
+  }
+
+  span {
+    display: inline-flex;
+    padding: 0.2em;
+    height: 2em;
+  }
+}
+
+.hiddenTab {
+  display: none;
+}
+
+.currentTab2 {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+  width: 100%;
+  max-width: 600px; /* Adjust as needed */
+  padding: 2rem;
+  background-color: #fff; /* Optional: For visual clarity */
+  border-radius: 8px; /* Optional: Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.currentTab2 button:last-of-type {
+  float: right;
+}
+
+.interest {
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 0.3rem;
+}
+
+.interestColumn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+}
+
+.interest {
+  cursor: pointer;
+}
+
+.interested {
+  background-color: #bbbbbb;
+}
+
+/* Styling the select dropdown */
+select {
+  width: 100%;
+  max-width: 400px; /* Set max width */
+  padding: 10px; /* Space around the text */
+  font-size: 16px;
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #ccc; /* Border color */
+  background-color: #f9f9f9; /* Light background */
+  color: #333;
+  appearance: none; /* Hide the native arrow */
+  outline: none;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Add an arrow to the dropdown */
+select:after {
+  content: "\25BC"; /* Unicode character for the dropdown arrow */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* When the user focuses on the dropdown */
+select:focus {
+  border-color: #007bff; /* Highlight the border in blue */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a subtle shadow */
+}
+
+/* Change the border color when the user hovers */
+select:hover {
+  border-color: #000000;
 }

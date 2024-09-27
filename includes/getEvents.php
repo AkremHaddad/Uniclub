@@ -14,7 +14,7 @@ if (isset($_GET['date'])) {
 }
 
 function getEventByDate(object $pdo, $selectedDate) {
-    $query = "SELECT id, title, description1, photos, date1 FROM event WHERE date1 = :selectedDate";
+    $query = "SELECT id, title, description1, photos, date1, loveReacts, upvotes, downvotes, bookmarks FROM event WHERE date1 = :selectedDate";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":selectedDate", $selectedDate);
     $stmt->execute();

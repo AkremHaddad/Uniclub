@@ -26,6 +26,7 @@ function is_email_taken(\PDO $pdo, string $email): bool {
   }
 }
 
-function create_user(\PDO $pdo, string $email, string $pwd): void {
-   set_user($pdo, $email, $pwd);
+function create_user(\PDO $pdo, string $email, string $pwd, string $fullName, int $phoneNumber): void {
+   set_user($pdo, $email, $pwd, $fullName, $phoneNumber);
 } 
+

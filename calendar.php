@@ -58,7 +58,7 @@ require_once 'includes/getEvents.php';
     
     <!----------------------------------------calendar------------------------------------------>
     <div class="calendar_container" >
-      <div class="current_day"></div>
+      <!-- <div class="current_day"></div> -->
       <div class="calendar2">
         <div class="calendar_nav">
           <div class="currentMonth">
@@ -70,10 +70,10 @@ require_once 'includes/getEvents.php';
         </div>
         <div class="calendar">
           <ul class="weeks">
-            <li>Sun</li>
+            <li>Sun </li>
             <li>Mon</li>
             <li>Tue</li>
-            <li>Wed</li>
+            <li>Wed </li>
             <li>Thu</li>
             <li>Fri</li>
             <li>Sat</li>
@@ -90,5 +90,7 @@ require_once 'includes/getEvents.php';
 
     <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
     <script src="JavaScript/calendar.js?<?php echo time(); ?>"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 require_once 'includes/config_session.inc.php';
 require_once 'includes/signup_view.inc.php';
+require_once 'includes/login_view.inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +69,8 @@ require_once 'includes/signup_view.inc.php';
               <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your email for registration</span>
+            <input placeholder="Fullname" name="fullName" />
+            <input placeholder="phone number" name="phoneNumber" />
             <input placeholder="Email" name="email" />
             <input type="password" placeholder="Password" name="pwd" />
             <button id="signin1" type="submit">Sign Up</button>
@@ -91,10 +94,10 @@ require_once 'includes/signup_view.inc.php';
             <input type="password" placeholder="Password" name="pwd" />
             <a href="#">Forgot your password?</a>
             <button>Sign In</button>
+            <?php
+            check_login_errors();
+            ?>
           </form>
-          <?php
-          check_signup_errors();
-          ?>
         </div>
 
 

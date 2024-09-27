@@ -4,7 +4,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $email = $_POST["email"];
   $pwd = $_POST["pwd"];
-
+  $phoneNumber = $_POST["phoneNumber"];
+  $fullName = $_POST["fullName"];
+  
   try {
 
     require_once 'dbh.inc.php';
@@ -31,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       die();
     }
 
-    create_user($pdo, $email, $pwd);
+    create_user($pdo, $email, $pwd, $fullName, $phoneNumber);
     header("Location: ../sign_log.php?signup=success");
 
     $pdo = null;
