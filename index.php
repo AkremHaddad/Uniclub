@@ -1,6 +1,9 @@
 <?php
 require_once 'includes/config_session.inc.php';
 require_once 'includes/signup_view.inc.php';
+require_once 'includes/login_view.inc.php';
+require_once 'includes/account.inc.php';
+require_once 'includes/dbh.inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,21 +37,21 @@ require_once 'includes/signup_view.inc.php';
         <li><a href="calendar.php">calendar</a></li>
         <li><a href="">notifications</a></li>
         <li><a href="">support</a></li>
-        <li id="loginButton1" class="loginButton">
-          <a href="sign_log.php">account</a>
-        </li>
+        <?php 
+          account1($pdo);
+        ?> 
       </ul>
       <ul>
-        <li><a href="index.php">Uniclub</a></li>
+        <li><a href="club.php">Uniclub</a></li>
         <li class="hideOnMobile">
           <input class="searchbar" type="text" value="Search..." />
         </li>
         <li class="hideOnMobile"><a href="calendar.php">calendar</a></li>
         <li class="hideOnMobile"><a href="">notifications</a></li>
         <li class="hideOnMobile"><a href="">support</a></li>
-        <li id="loginButton2" class="loginButton hideOnMobile">
-          <a href="sign_log.php">account</a>
-        </li>
+        <?php
+          account2($pdo);
+        ?>
         <li class="menuButton" onclick="ShowSidebar()">
           <a><img src="media/menu.svg" /></a>
         </li>

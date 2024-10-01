@@ -13,7 +13,7 @@ nav ul {
 }
 
 nav li {
-  height: 50px;
+  min-height: 8vh;
   display: flex; /* Ensure flexbox is used for centering */
   align-items: center; /* Vertically center the content */
   justify-content: center; /* Horizontally center the content */
@@ -27,7 +27,7 @@ nav li {
   border: none;
   margin-right: 1vw;
   max-width: 150px;
-  max-height: 30px;
+  height: 5.5vh;
   width: 100%; /* Make the input take up available space in li */
 }
 
@@ -45,7 +45,7 @@ nav input {
   color: black;
 }
 
-nav a:hover {
+nav li:hover {
   background-color: #5e9abd;
 }
 
@@ -103,4 +103,79 @@ nav li:first-child {
   .sidebar {
     display: none; /* Ensure it's hidden on large screens */
   }
+}
+
+.user_photo {
+  width: 50px; /* Set a fixed width for consistency */
+  height: 50px; /* Set equal height */
+  border-radius: 50%; /* Ensure it's a perfect circle */
+  overflow: hidden; /* Ensure no content overflows the circular shape */
+  cursor: pointer;
+}
+
+.user_photo img {
+  width: 80%;
+  max-width: 50px; /* Make the image fill the parent container */
+  height: 80%; /* Ensure the image maintains its size */
+  object-fit: cover; /* Ensures the image is cropped to cover the entire area without distortion */
+  border-radius: 50%; /* Apply the circular shape to the image itself */
+}
+
+/* profile image related */
+/* Style for the profile container and image */
+.profile_container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the dropdown menu */
+.user_photo {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown_menu {
+  display: none; /* Hidden by default */
+  position: fixed;
+  right: 0;
+  background-color: #fff;
+  min-width: 160px;
+  width: 15vw;
+  max-width: 15vw;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  list-style-type: none;
+  margin-top: 0.5vh;
+}
+
+.dropdown_menu li {
+  width: 100%;
+  height: 100%;
+}
+
+.dropdown_menu li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown_menu li:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown_menu button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  color: inherit; /* Retain the text color from the parent element */
+  font: inherit; /* Inherit the font family from the parent */
+}
+
+.dropdown_menu form {
+  width: 100%;
+  height: 100%;
 }

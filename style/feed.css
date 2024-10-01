@@ -1,8 +1,8 @@
 .feed {
   align-self: center;
-  width: clamp(50vw, 50vw, 100vw);
+  width: clamp(459px, 50vw, 100vw);
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   gap: 2vh;
+  overflow: hidden;
 }
 
 .post {
@@ -60,18 +61,18 @@ ion-icon {
 .user_reaction > div {
   /* background-color: #e5ebee;
   border-radius: 15px; */
-  width: 6vw;
+  width: 7vw;
   height: 6.5vh;
   max-height: 6.5vh;
   display: flex;
   justify-content: start;
   align-items: center;
-  background-color: #e4e4e4;
+  background-color: #cccccc;
   border-radius: 25px;
 }
 
 .user_reaction span {
-  font-size: clamp(1rem, 2vw, 2.5rem);
+  font-size: clamp(0.5rem, 1vw, 2rem);
 }
 
 /* posts photos */
@@ -143,4 +144,8 @@ ion-icon {
 .user_reaction > div:hover > span {
   /* background-color: #bebebe; */
   color: white;
+}
+
+.reacted {
+  background-color: #4a8798 !important;
 }

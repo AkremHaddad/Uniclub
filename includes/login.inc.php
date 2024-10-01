@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $errors["login_incorrect"] = "incorrect login info";
     }
 
-    require_once 'config_session.inc.php' ;
+    require_once 'config_session.inc.php';
 
     if ($errors) {
       $_SESSION["errors_login"] = $errors;

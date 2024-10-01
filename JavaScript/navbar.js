@@ -31,3 +31,22 @@ function hideSidebarOnResize() {
 }
 window.addEventListener("resize", hideSidebarOnResize);
 document.addEventListener("DOMContentLoaded", hideSidebarOnResize);
+
+// Get the profile picture and menu elements
+document.getElementById("profileImage").addEventListener("click", function () {
+  var dropdown = document.getElementById("dropdownMenu");
+  if (dropdown.style.display === "none" || dropdown.style.display === "") {
+    dropdown.style.display = "block";
+  } else {
+    dropdown.style.display = "none";
+  }
+});
+
+// Close dropdown if clicked outside
+window.addEventListener("click", function (e) {
+  var profileImage = document.getElementById("profileImage");
+  var dropdown = document.getElementById("dropdownMenu");
+  if (!profileImage.contains(e.target)) {
+    dropdown.style.display = "none";
+  }
+});
