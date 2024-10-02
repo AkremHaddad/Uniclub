@@ -8,8 +8,6 @@ error_reporting(E_ALL);
 require_once 'dbh.inc.php'; // Database connection
 require_once 'config_session.inc.php';
 
-
-
 function getProfileCover(object $pdo, int $club_id): array {
       $query = "
         SELECT

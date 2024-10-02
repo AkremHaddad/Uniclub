@@ -22,6 +22,7 @@ require_once 'includes/dbh.inc.php';
     <link rel="stylesheet" href="../pfa_final/style/navbar.css?<?php echo time(); ?>" type="text/css"/>
     <link rel="stylesheet" href="../pfa_final/style/log.css?<?php echo time(); ?>" type="text/css"/>
     <link rel="stylesheet" href="../pfa_final/style/feed.css?<?php echo time(); ?>" type="text/css"/>
+
   </head>
 
   <body>
@@ -64,9 +65,11 @@ require_once 'includes/dbh.inc.php';
 
       </div>
     </div>
+    
     <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
     <script src="JavaScript/log.js?<?php echo time(); ?>"></script>
     <script src="JavaScript/feed.js?<?php echo time(); ?>"></script>
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>

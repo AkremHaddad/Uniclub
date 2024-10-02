@@ -24,7 +24,7 @@ function account1(object $pdo) {
       //       ';
     } else 
     {
-      echo '<li class="user_photo "><img src="media/Default_avatar.svg" alt="User Profile Image" /></li>';
+      echo '<li><a href="">my account</a></li>';
     }
   }else {
     echo "<li id='loginButton1' class='loginButton'>
@@ -40,8 +40,8 @@ function account2(object $pdo) {
     $profile_picture = get_user_profile_picture($pdo, $user_id);
     if ($profile_picture) 
     {
-      echo '<li class="user_photo">
-              <img src="' . $profile_picture . '" alt="User Profile Image" id="profileImage" />
+      echo '<li class="hideOnMobile user_photo">
+              <img src="' . $profile_picture . '" alt="User Profile Image" class="profileImage" />
               <ul class="dropdown_menu" id="dropdownMenu">
                 <li><a href="/my-profile">My Profile</a></li>
                 <li><a href="/my-bookmarks">My Bookmarks</a></li>
@@ -51,7 +51,15 @@ function account2(object $pdo) {
             ';
     } else 
     {
-      echo '<li class="user_photo "><img src="media/Default_avatar.svg" alt="User Profile Image" /></li>';
+      echo '
+        <li  class="hideOnMobile user_photo"><div class="profile_container">
+          <img class="profileImage" src="media/Default_avatar.svg" alt="User Profile Image" />
+          <ul class="dropdown_menu" id="dropdownMenu">
+            <li><a href="/my-profile">My Profile</a></li>
+            <li><a href="/my-bookmarks">My Bookmarks</a></li>
+            <li><form action="includes/logout.inc.php" method="post"><button class"Iwkms">Log Out</button></form></li>
+          </ul></div>
+        </li>';
     }
   }else 
   {

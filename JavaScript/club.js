@@ -17,9 +17,7 @@ tabs.forEach((tab, index) => {
 
 // Get the scroll arrow element
 const scrollToTop = document.getElementById("scrollToTop");
-console.log(scrollToTop);
 const test1 = document.querySelector(".club_page");
-console.log(test1);
 
 // Show the arrow when scrolling down and hide it when at the top
 test1.onscroll = function () {
@@ -195,7 +193,6 @@ requestTabs.forEach(function (tab) {
 
 // create event //
 // Add photos to the post
-console.log(document.getElementById("post_photo"));
 document.getElementById("post_photo").addEventListener("click", function () {
   var fileInput = document.getElementById("post_image_input");
   console.log("akrem sos");
@@ -203,7 +200,6 @@ document.getElementById("post_photo").addEventListener("click", function () {
     fileInput.click();
   }
 });
-console.log("secks");
 
 document
   .getElementById("post_image_input")

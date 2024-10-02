@@ -1,6 +1,14 @@
 .feed {
   align-self: center;
   width: clamp(459px, 50vw, 100vw);
+  height: 92vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.feed2 {
+  align-self: center;
+  width: clamp(459px, 50vw, 100vw);
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;

@@ -1,9 +1,9 @@
 <?php
 require_once 'includes/config_session.inc.php';
+require_once 'includes/dbh.inc.php';
 require_once 'includes/signup_view.inc.php';
 require_once 'includes/login_view.inc.php';
 require_once 'includes/account.inc.php';
-require_once 'includes/dbh.inc.php';
 if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
   $_SESSION['club_id'] = intval($_GET['club_id']);
 } else {
@@ -23,11 +23,11 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../pfa_final/style/style.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/navbar.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/log.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/feed.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/club.css" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/style.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/navbar.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/log.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/feed.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/club.css?<?php echo time(); ?>" type="text/css"/>
   </head>
 
   <body>
@@ -78,7 +78,7 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
 
       <!-- Content containers for each tab (initially hidden) -->
       <div class="tab_content" id="posts_content">
-        <div class="feed">
+        <div class="feed2">
           <div id="create_p">
                 <textarea
                   id="post_input"
@@ -345,12 +345,14 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
           </div>
         </div>
       </div>
+    </div>
+    <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/log.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/club_photos.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/clubFeed.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/club.js?<?php echo time(); ?>"></script>
 
-    <script src="JavaScript/navbar.js?"></script>
-    <script src="JavaScript/log.js?"></script>
-    <script src="JavaScript/club.js?"></script>
-    <script src="JavaScript/clubFeed.js"></script>
-    <script src="JavaScript/club_photos.js"></script>
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>

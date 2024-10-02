@@ -8,9 +8,7 @@ require_once 'dbh.inc.php'; // Database connection
 require_once 'config_session.inc.php';
 
 
-// $club_id = $_SESSION['club_id'];
-
-function getPostsWithClubInfo(object $pdo, int $club_id) {
+function getPostsWithClubInfo(object $pdo, int $club_id):array {
     $query = "
         SELECT 
             posts.id AS postId,
@@ -82,7 +80,7 @@ function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $clu
         SELECT 
             posts.id AS postId,
             posts.text AS postText,
-            posts.clubId AS clubId,,
+            posts.clubId AS clubId,
             posts.photo1, 
             posts.photo2, 
             posts.photo3, 
@@ -163,16 +161,18 @@ function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $clu
 
 
 // Assume userId is available from the session or authentication.
+
+
 if (isset($_SESSION['club_id'])) {
   $club_id = $_SESSION['club_id'];
 } else {
-  $club_id = 1;
+  $club_id = 3;
 }
-if(isset($_SESSION["user_id"]))
+ if(isset($_SESSION['user_id']))
 {
-    $userId = $_SESSION["user_id"];
+    $userId = $_SESSION['user_id'];
     $posts = getPostsWithClubInfoAndUserReactions($pdo, $userId, $club_id);
-}else {
+}else{
     $posts = getPostsWithClubInfo($pdo, $club_id);
 }
 

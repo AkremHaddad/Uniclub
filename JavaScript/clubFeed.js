@@ -94,9 +94,58 @@ fetch("includes/getClubPosts.php")
       `;
 
       // Append the post HTML to the feed container
+
       feedContainer.innerHTML += postHTML;
       // Select each ion-icon by its name and toggle the outline/filled state
       // Function to toggle between outline and filled icons
+
+      document.querySelectorAll(".user_reaction > div").forEach((element) => {
+        element.addEventListener("click", function () {
+          const icon = element.querySelector("ion-icon");
+          const iconName = icon.getAttribute("name");
+          const outlinedIcon = iconName.endsWith("-outline");
+          const span = element.querySelector("span"); // Get the span inside the div
+
+          if (outlinedIcon) {
+            icon.setAttribute("name", iconName.replace("-outline", ""));
+            element.classList.add("reacted");
+
+            // Increment the number in the span
+            span.textContent = parseInt(span.textContent) + 1;
+          } else {
+            icon.setAttribute("name", iconName + "-outline");
+            element.classList.remove("reacted");
+
+            // Decrement the number in the span
+            span.textContent = parseInt(span.textContent) - 1;
+          }
+        });
+      });
+
+      document.querySelectorAll(".user_reaction > div").forEach((element) => {
+        element.addEventListener("click", function () {
+          const action = this.classList[0]; // Gets the class name, e.g., "love"
+          const postId = this.closest(".user_reaction").dataset.postId; // Get post ID from parent div
+          console.log(action, postId);
+          fetch("includes/update_reaction.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ action: action, postId: postId }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                // Optionally update UI with new counts here
+                console.log(data.message);
+              } else {
+                console.error(data.message);
+              }
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+      });
     });
   })
   .catch((error) => console.error("Error fetching posts:", error));

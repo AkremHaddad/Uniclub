@@ -17,9 +17,9 @@ require_once 'includes/getEvents.php';
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <link rel="stylesheet" href="../pfa_final/style/style.css?<?php echo time(); ?>" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/navbar.css?<?php echo time(); ?>" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/calendar.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/style.css" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/navbar.css" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/calendar.css" type="text/css"/>
   </head>
 
   <body class="body1">
@@ -88,8 +88,8 @@ require_once 'includes/getEvents.php';
 
 
 
-    <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
-    <script src="JavaScript/calendar.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/navbar.js"></script>
+    <script src="JavaScript/calendar.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>

@@ -33,14 +33,22 @@ window.addEventListener("resize", hideSidebarOnResize);
 document.addEventListener("DOMContentLoaded", hideSidebarOnResize);
 
 // Get the profile picture and menu elements
-document.getElementById("profileImage").addEventListener("click", function () {
-  var dropdown = document.getElementById("dropdownMenu");
-  if (dropdown.style.display === "none" || dropdown.style.display === "") {
-    dropdown.style.display = "block";
-  } else {
-    dropdown.style.display = "none";
-  }
-});
+// Get all elements with the class "profileImage"
+var profileImages = document.querySelectorAll(".profileImage");
+console.log(profileImages[0]);
+
+// Loop through the collection and add event listener to each element
+for (var i = 0; i < profileImages.length; i++) {
+  profileImages[i].addEventListener("click", function () {
+    var dropdown = document.getElementById("dropdownMenu");
+    console.log(dropdown);
+    if (dropdown.style.display === "none" || dropdown.style.display === "") {
+      dropdown.style.display = "block";
+    } else {
+      dropdown.style.display = "none";
+    }
+  });
+}
 
 // Close dropdown if clicked outside
 window.addEventListener("click", function (e) {
