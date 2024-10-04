@@ -75,32 +75,10 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
         <div class="tab" id="manage_requests_tab">Manage Requests</div>
       </div>
 
-      <!-- Content containers for each tab (initially hidden) -->
+
       <div class="tab_content" id="posts_content">
         <div class="feed2">
-        <form id="createPostForm" method="post" enctype="multipart/form-data">
-          <div id="create_p">
-              <textarea
-                  id="post_input"
-                  name="post_content"
-                  placeholder="Write your post here..."
-                  maxlength="400"
-              ></textarea>
-              <div id="post_container2">
-                  <div id="inserted_photos"></div>
-                  <input
-                      type="file"
-                      id="post_image_input"
-                      name="post_images[]"
-                      style="display: none"
-                      accept="image/*"
-                      multiple="multiple"
-                  />
-                  <img id="post_photo" class="post_photo" alt="" src="media/gallery-photo.svg" />
-                  <button id="post_butt" type="button">Post</button>
-              </div>
-          </div>
-        </form>         
+        
           <div class="club_feed_container">
 
           </div>
@@ -114,31 +92,7 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
         </div>
       </div>
       <div class="tab_content" id="about_us_content" >
-        <div class="bio_section">
-          <h2>About Us</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vulputate
-            metus sit amet ligula pulvinar, vel pharetra purus dictum. Fusce eget sem
-            non justo efficitur vehicula nec sit amet elit.
-          </p>
-        </div>
-
-        <!-- Members List Area -->
-        <div class="members_section">
-          <h2>Members</h2>
-          <ul class="members_list">
-            <li>Member 1</li>
-            <li>Member 2</li>
-            <li>Member 3</li>
-            <li>Member 4</li>
-            <li>Member 5</li>
-            <li>Member 6</li>
-            <li>Member 7</li>
-            <li>Member 8</li>
-            <li>Member 9</li>
-            <li>Member 10</li>
-          </ul>
-        </div>
+        
       </div>
       <div class="tab_content" id="manage_events_content" >
         <div class="events_tab_container">
@@ -356,6 +310,7 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
     <script src="JavaScript/club.js?<?php echo time(); ?>"></script>
     <script src="JavaScript/createPost.js?<?php echo time(); ?>"></script>
     <script src="JavaScript/deletePost.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/clubAboutus.js?<?php echo time(); ?>"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

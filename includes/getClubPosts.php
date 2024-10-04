@@ -68,7 +68,8 @@ function getPostsWithClubInfo(object $pdo, int $club_id):array {
             'userUpvoted' => 0,
             'userDownvoted' => 0,
             'userReposted' => 0,
-            'userBookmarked' => 0
+            'userBookmarked' => 0,
+            'is_user_admin' => 0
         ];
     }
 
@@ -96,37 +97,31 @@ function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $clu
             CASE WHEN user_upvotes.id IS NOT NULL THEN 1 ELSE 0 END AS userUpvoted,
             CASE WHEN user_downvotes.id IS NOT NULL THEN 1 ELSE 0 END AS userDownvoted,
             CASE WHEN user_reposts.id IS NOT NULL THEN 1 ELSE 0 END AS userReposted,
-            CASE WHEN user_bookmarks.id IS NOT NULL THEN 1 ELSE 0 END AS userBookmarked
+            CASE WHEN user_bookmarks.id IS NOT NULL THEN 1 ELSE 0 END AS userBookmarked,
+            CASE 
+                WHEN club.ownerId = :user_id THEN 1
+                WHEN cm.admin = 1 THEN 1
+                ELSE 0
+            END AS is_user_admin
         FROM 
             posts
-            JOIN 
-            club ON posts.clubId = club.id
-            LEFT JOIN 
-            (SELECT post_id, COUNT(*) AS count FROM love_reacts GROUP BY post_id) AS love_reacts ON posts.id = love_reacts.post_id
-            LEFT JOIN 
-            (SELECT post_id, COUNT(*) AS count FROM upvotes GROUP BY post_id) AS upvotes ON posts.id = upvotes.post_id
-        LEFT JOIN 
-            (SELECT post_id, COUNT(*) AS count FROM downvotes GROUP BY post_id) AS downvotes ON posts.id = downvotes.post_id
-        LEFT JOIN 
-            (SELECT post_id, COUNT(*) AS count FROM reposts GROUP BY post_id) AS reposts ON posts.id = reposts.post_id
-        LEFT JOIN 
-            (SELECT post_id, COUNT(*) AS count FROM bookmarks GROUP BY post_id) AS bookmarks ON posts.id = bookmarks.post_id
-            LEFT JOIN 
-            love_reacts AS user_love_reacts ON posts.id = user_love_reacts.post_id AND user_love_reacts.user_id = :userId
-            LEFT JOIN 
-            upvotes AS user_upvotes ON posts.id = user_upvotes.post_id AND user_upvotes.user_id = :userId
-            LEFT JOIN 
-            downvotes AS user_downvotes ON posts.id = user_downvotes.post_id AND user_downvotes.user_id = :userId
-            LEFT JOIN 
-            reposts AS user_reposts ON posts.id = user_reposts.post_id AND user_reposts.user_id = :userId
-            LEFT JOIN 
-            bookmarks AS user_bookmarks ON posts.id = user_bookmarks.post_id AND user_bookmarks.user_id = :userId
+            JOIN club ON posts.clubId = club.id
+            LEFT JOIN (SELECT post_id, COUNT(*) AS count FROM love_reacts GROUP BY post_id) AS love_reacts ON posts.id = love_reacts.post_id
+            LEFT JOIN (SELECT post_id, COUNT(*) AS count FROM upvotes GROUP BY post_id) AS upvotes ON posts.id = upvotes.post_id
+            LEFT JOIN (SELECT post_id, COUNT(*) AS count FROM downvotes GROUP BY post_id) AS downvotes ON posts.id = downvotes.post_id
+            LEFT JOIN (SELECT post_id, COUNT(*) AS count FROM reposts GROUP BY post_id) AS reposts ON posts.id = reposts.post_id
+            LEFT JOIN (SELECT post_id, COUNT(*) AS count FROM bookmarks GROUP BY post_id) AS bookmarks ON posts.id = bookmarks.post_id
+            LEFT JOIN love_reacts AS user_love_reacts ON posts.id = user_love_reacts.post_id AND user_love_reacts.user_id = :user_id
+            LEFT JOIN upvotes AS user_upvotes ON posts.id = user_upvotes.post_id AND user_upvotes.user_id = :user_id
+            LEFT JOIN downvotes AS user_downvotes ON posts.id = user_downvotes.post_id AND user_downvotes.user_id = :user_id
+            LEFT JOIN reposts AS user_reposts ON posts.id = user_reposts.post_id AND user_reposts.user_id = :user_id
+            LEFT JOIN bookmarks AS user_bookmarks ON posts.id = user_bookmarks.post_id AND user_bookmarks.user_id = :user_id
+            LEFT JOIN clubmembers cm ON club.id = cm.clubId AND cm.userId = :user_id
         WHERE posts.clubId = :club_id
     ";
 
-
     $stmt = $pdo->prepare($query);
-    $stmt->execute(['club_id' => $club_id, 'userId' => $userId]);
+    $stmt->execute(['club_id' => $club_id, 'user_id' => $userId]);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $posts = [];
@@ -147,17 +142,18 @@ function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $clu
             'downvotes' => (int)$row['downvotes'],
             'reposts' => (int)$row['reposts'],
             'bookmarks' => (int)$row['bookmarks'],
-            // Add user reaction statuses
             'userLoved' => (bool)$row['userLoved'],
             'userUpvoted' => (bool)$row['userUpvoted'],
             'userDownvoted' => (bool)$row['userDownvoted'],
             'userReposted' => (bool)$row['userReposted'],
-            'userBookmarked' => (bool)$row['userBookmarked']
+            'userBookmarked' => (bool)$row['userBookmarked'],
+            'is_user_admin' => (bool)$row['is_user_admin']
         ];
     }
 
     return $posts;
 }
+
 
 
 // Assume userId is available from the session or authentication.
@@ -166,7 +162,7 @@ function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $clu
 if (isset($_SESSION['club_id'])) {
   $club_id = $_SESSION['club_id'];
 } else {
-  $club_id = 3;
+  $club_id = 1;
 }
  if(isset($_SESSION['user_id']))
 {

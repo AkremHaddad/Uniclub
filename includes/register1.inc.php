@@ -50,8 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    $interests = $_POST['selected_interests'] ?? []; // Collect as an array
-    $interestsStr = implode(", ", $interests); // Convert array to comma-separated string
+    $interestsStr = $_POST['selected_interests'] ?? []; // Collect as an array
 
     // Handle interests (if checkboxes are used)
 
