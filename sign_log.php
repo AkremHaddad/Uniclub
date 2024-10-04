@@ -1,6 +1,5 @@
 <?php
 require_once 'includes/config_session.inc.php';
-require_once 'includes/signup_view.inc.php';
 require_once 'includes/login_view.inc.php';
 ?>
 
@@ -16,10 +15,10 @@ require_once 'includes/login_view.inc.php';
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../pfa_final/style/style.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/navbar.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/log.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/feed.css" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/style.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/navbar.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/log.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/feed.css?<?php echo time(); ?>" type="text/css"/>
   </head>
 
   <body>
@@ -60,7 +59,7 @@ require_once 'includes/login_view.inc.php';
     <div id="popup1" class="popup">
       <div id="container" class="container popContent">
         <div class="form-container sign-up-container">
-          <form action="includes/signup.inc.php" method="post">
+          <form id="signupForm" method="post">
             <h1>Create Account</h1>
             <div class="social-container">
               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -75,9 +74,12 @@ require_once 'includes/login_view.inc.php';
             <input placeholder="Email" name="email" />
             <input type="password" placeholder="Password" name="pwd" />
             <button id="signin1" type="submit">Sign Up</button>
-            <?php
+            <div class="form_error" id="errors">
+
+            </div>
+            <!-- ?php
             check_signup_errors();
-            ?>
+            ?> -->
           </form>
         </div>
         <div class="form-container sign-in-container">
@@ -121,7 +123,8 @@ require_once 'includes/login_view.inc.php';
       </div>
     </div>
 
-    <script src="JavaScript/navbar.js"></script>
-    <script src="JavaScript/log.js"></script>
+    <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/log.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/signup.js?<?php echo time(); ?>"></script>
     </body>
 </html>

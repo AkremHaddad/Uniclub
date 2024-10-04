@@ -241,6 +241,28 @@
   cursor: pointer;
 }
 
+/* .club_name_photo_container {
+  display: flex;
+} */
+
+.delete_post {
+  margin-top: 5px;
+  width: 5vw;
+  min-width: 40px;
+  max-height: 3vh;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #c4c4c4;
+  border: #000 solid 1px;
+  user-select: none;
+  font-size: 12px;
+  text-align: center;
+}
+
+.delete_post:hover {
+  cursor: pointer;
+}
+
 .event_part1 {
   display: flex;
   width: 100%;

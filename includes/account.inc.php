@@ -40,13 +40,13 @@ function account2(object $pdo) {
     $profile_picture = get_user_profile_picture($pdo, $user_id);
     if ($profile_picture) 
     {
-      echo '<li class="hideOnMobile user_photo">
+      echo '<li class="hideOnMobile user_photo"><div class="profile_container">
               <img src="' . $profile_picture . '" alt="User Profile Image" class="profileImage" />
               <ul class="dropdown_menu" id="dropdownMenu">
                 <li><a href="/my-profile">My Profile</a></li>
                 <li><a href="/my-bookmarks">My Bookmarks</a></li>
                 <li><form action="includes/logout.inc.php" method="post"><button class"Iwkms">Log Out</button></form></li>
-              </ul>
+              </ul></div>
             </li>
             ';
     } else 

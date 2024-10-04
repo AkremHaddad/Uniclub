@@ -37,37 +37,31 @@ function loadFile(event) {
   image.src = URL.createObjectURL(event.target.files[0]);
 }
 
-var interests = document.getElementsByClassName("interest");
-var selectedInterests = [];
+document.addEventListener("DOMContentLoaded", function () {
+  const interests = document.querySelectorAll(".interest");
+  const selectedInterestsInput = document.getElementById("selected-interests");
+  let selectedInterests = [];
 
-// Toggle class on click and store selected interests
-for (var i = 0; i < interests.length; i++) {
-  interests[i].addEventListener("click", function () {
-    this.classList.toggle("interested");
+  interests.forEach((interest) => {
+    interest.addEventListener("click", function () {
+      // Get the interest value from the data attribute
+      const interestValue = interest.getAttribute("data-interest");
 
-    // Get the interest value from data attribute
-    var interestValue = this.getAttribute("data-interest");
+      // Toggle the "interested" class
+      this.classList.toggle("interested");
 
-    // Check if the interest is already selected
-    var index = selectedInterests.indexOf(interestValue);
-    if (index > -1) {
-      // If it is selected, remove it from the array
-      selectedInterests.splice(index, 1);
-    } else {
-      // If not, add it to the array
-      selectedInterests.push(interestValue);
-    }
+      // Check if the interest is already selected
+      const index = selectedInterests.indexOf(interestValue);
+      if (index > -1) {
+        // If it is selected, remove it from the array
+        selectedInterests.splice(index, 1);
+      } else {
+        // If not, add it to the array
+        selectedInterests.push(interestValue);
+      }
+
+      // Update the hidden input value with selected interests as a comma-separated string
+      selectedInterestsInput.value = selectedInterests.join(",");
+    });
   });
-}
-
-// Handle form submission
-document.querySelector("form").addEventListener("submit", function (e) {
-  // Create a hidden input to hold the interests
-  var interestsInput = document.createElement("input");
-  interestsInput.type = "hidden";
-  interestsInput.name = "interests[]"; // Use array syntax for PHP
-  interestsInput.value = selectedInterests.join(","); // Join selected interests
-
-  // Append to the form
-  this.appendChild(interestsInput);
 });

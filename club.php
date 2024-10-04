@@ -1,7 +1,6 @@
 <?php
 require_once 'includes/config_session.inc.php';
 require_once 'includes/dbh.inc.php';
-require_once 'includes/signup_view.inc.php';
 require_once 'includes/login_view.inc.php';
 require_once 'includes/account.inc.php';
 if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
@@ -79,25 +78,29 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
       <!-- Content containers for each tab (initially hidden) -->
       <div class="tab_content" id="posts_content">
         <div class="feed2">
+        <form id="createPostForm" method="post" enctype="multipart/form-data">
           <div id="create_p">
-                <textarea
+              <textarea
                   id="post_input"
+                  name="post_content"
                   placeholder="Write your post here..."
                   maxlength="400"
-                ></textarea>
-                <div id="post_container2">
+              ></textarea>
+              <div id="post_container2">
                   <div id="inserted_photos"></div>
                   <input
-                    type="file"
-                    id="post_image_input"
-                    style="display: none"
-                    accept="image/*"
-                    multiple="multiple"
+                      type="file"
+                      id="post_image_input"
+                      name="post_images[]"
+                      style="display: none"
+                      accept="image/*"
+                      multiple="multiple"
                   />
                   <img id="post_photo" class="post_photo" alt="" src="media/gallery-photo.svg" />
-                  <button id="post_butt">post</button>
-                </div>
+                  <button id="post_butt" type="button">Post</button>
+              </div>
           </div>
+        </form>         
           <div class="club_feed_container">
 
           </div>
@@ -351,7 +354,8 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
     <script src="JavaScript/club_photos.js?<?php echo time(); ?>"></script>
     <script src="JavaScript/clubFeed.js?<?php echo time(); ?>"></script>
     <script src="JavaScript/club.js?<?php echo time(); ?>"></script>
-
+    <script src="JavaScript/createPost.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/deletePost.js?<?php echo time(); ?>"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

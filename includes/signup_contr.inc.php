@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-function is_input_empty(string $email, string $pwd): bool {
-  if (empty($email) || empty($pwd)){
+function is_input_empty(string $email, string $pwd, string $fullName, int $phoneNumber): bool {
+  if (empty($email) || empty($pwd) || empty($fullName) || empty($phoneNumber)){
     return true;
   } else {
     return false;

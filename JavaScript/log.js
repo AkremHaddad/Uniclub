@@ -73,3 +73,52 @@ signInButton.addEventListener("click", () => {
 // signUpButton.addEventListener("click", () => {
 //   container.classList.add("right-panel-active-fast");
 // });
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const login = document.querySelector("#loginForm"); // Form ID
+//   const errors1 = document.querySelector("#errors2"); // Form ID
+
+//   login.addEventListener("submit", function (event) {
+//     event.preventDefault(); // Prevent the default form submission
+
+//     // Get the input values
+//     const email = document.querySelector("input[name='email']").value;
+//     const pwd = document.querySelector("input[name='pwd']").value;
+//     console.log(email, pwd);
+
+//     // Send data via fetch to the server
+//     fetch("includes/login.inc.php", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         email: email,
+//         pwd: pwd, // Make sure it matches PHP's 'password' key
+//       }),
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         if (data.success) {
+//           errors1.innerHTML = data.message; // Show success message
+//           window.location.href = "./index.php?login=success"; // Redirect to a relevant page
+//         } else {
+//           if (data.errors) {
+//             // Display individual validation errors
+//             let errorMessages = [];
+//             for (const error in data.errors) {
+//               errorMessages.push(data.errors[error]); // Add each error message to the array
+//             }
+//             // Join and display all error messages
+//             errors1.innerHTML = errorMessages.join("<br>");
+//           } else {
+//             errors1.innerHTML = data.message; // Generic failure message
+//           }
+//         }
+//       })
+//       .catch((error) => {
+//         console.error("Error:", error);
+//         errors1.innerHTML = "An error occurred while loging in.";
+//       });
+//   });
+// });

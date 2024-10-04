@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", hideSidebarOnResize);
 // Get the profile picture and menu elements
 // Get all elements with the class "profileImage"
 var profileImages = document.querySelectorAll(".profileImage");
-console.log(profileImages[0]);
 
 // Loop through the collection and add event listener to each element
 for (var i = 0; i < profileImages.length; i++) {
@@ -52,7 +51,7 @@ for (var i = 0; i < profileImages.length; i++) {
 
 // Close dropdown if clicked outside
 window.addEventListener("click", function (e) {
-  var profileImage = document.getElementById("profileImage");
+  var profileImage = document.querySelector("profileImage");
   var dropdown = document.getElementById("dropdownMenu");
   if (!profileImage.contains(e.target)) {
     dropdown.style.display = "none";

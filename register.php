@@ -1,23 +1,30 @@
+<?php
+require_once 'includes/config_session.inc.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style/style.css" />
-    <link rel="stylesheet" href="style/signup.css" />
+    <title>Uniclub</title>
+    <link rel="stylesheet" href="style/style.css?<?php echo time(); ?>" />
+    <link rel="stylesheet" href="style/signup.css?<?php echo time(); ?>" />
   </head>
+
   <body>
     <!---------------------------------signup section--------------------------------------->
     <form
-      action="includes/register.inc.php"
+      action="includes/register1.inc.php"
       method="post"
       enctype="multipart/form-data"
     >
       <div id="part1" class="part1 currentTab">
         <div class="formColumn">
           <label for="studyField">study field:</label>
-          <select id="studyField" name="studyField" required>
+          <select id="studyField" name="studyField">
             <option value="">Select a study field</option>
             <option value="computer_science">Computer Science</option>
             <option value="engineering">Engineering</option>
@@ -63,7 +70,7 @@
             <label class="-label" for="file">
               <span>Change Image</span>
             </label>
-            <input id="file" type="file" onchange="loadFile(event)" />
+            <input id="file" type="file" name="profile_pic" onchange="loadFile(event)" />
             <img src="media/Default_avatar.svg" id="output" width="200" />
           </div>
 
@@ -180,11 +187,12 @@
               <span>Health & Wellness</span>
               <ion-icon name="add-circle-outline"></ion-icon>
             </div>
+            <input type="hidden" name="selected_interests" id="selected-interests" value="">
           </div>
         </div>
         <div class="buttonContainer">
           <button type="button" onclick="previousTab()">Back</button>
-          <button type="submit">Register</button>
+          <button type="submit" >Register</button>
         </div>
       </div>
     </form>
@@ -197,6 +205,6 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-    <script src="JavaScript/signup2.js"></script>
+    <script src="JavaScript/signup2.js?<?php echo time(); ?>"></script>
   </body>
 </html>

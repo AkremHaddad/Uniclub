@@ -195,7 +195,6 @@ requestTabs.forEach(function (tab) {
 // Add photos to the post
 document.getElementById("post_photo").addEventListener("click", function () {
   var fileInput = document.getElementById("post_image_input");
-  console.log("akrem sos");
   if (fileInput) {
     fileInput.click();
   }

@@ -20,7 +20,7 @@ fetch("includes/getClubPosts.php")
       // const postPhotosDiv = document.querySelector(".post-photos");
       // postPhotosDiv.classList.add(`photos-${numberOfPhotos}`);
       const postHTML = `
-        <div class="post">
+        <div class="post" data-post-id="${post.id}">
           <div class="club_name_photo_container">
             <div>
               <a href="../pfa_final/club.php?club_id=${post.club_id}">
@@ -30,9 +30,10 @@ fetch("includes/getClubPosts.php")
                     : ""
                 }
               </a>
+              </div>
+              <span>${post.clubName}</span>
+              <button class="delete_post">delete</button>
             </div>
-            <span>${post.clubName}</span>
-          </div>
           <div class="post_text">${post.text}</div>
           <div class="post-photos photos-${numberOfPhotos}">
             ${postPhotos
