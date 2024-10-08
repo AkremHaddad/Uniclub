@@ -6,9 +6,14 @@ fetch("includes/getAboutus.php?club_id=YOUR_CLUB_ID") // Replace YOUR_CLUB_ID wi
 
     const aboutusHTML = `
       <div class="bio_section">
-      ${aboutus.is_user_admin ? ` <button id="edit_bio">edit</button> ` : ""}   
+      ${
+        aboutus.is_user_admin
+          ? ` <button id="edit_bio">edit</button> 
         <h2>About Us</h2>
         <textarea id="bio_textarea" class="bio">${aboutus.bio}</textarea>
+        `
+          : `<h2>About Us</h2> <p id="bio_textarea" class="bio">${aboutus.bio}</p>`
+      }   
       </div>
 
       <!-- Members List Area -->

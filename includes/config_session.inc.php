@@ -9,10 +9,10 @@ session_set_cookie_params([
   'path' => '/',
   'secure' => true,
   'httponly' => true,
-
 ]);
 
 session_start();
+
 
 // Session regeneration logic
 if (isset($_SESSION["user_id"])) {
@@ -38,7 +38,8 @@ if (isset($_SESSION["user_id"])) {
 }
 
 // Function to regenerate the session ID
-function regenerate_session_id() {
+function regenerate_session_id()
+{
     session_regenerate_id(true);  // True: delete the old session ID
     $_SESSION["last_regeneration"] = time();  // Reset the regeneration time
 }

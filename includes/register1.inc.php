@@ -5,8 +5,8 @@ header('Content-Type: text/html'); // Set the content type as HTML
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     require_once 'config_session.inc.php';
 
-    // Check if user is logged in    
-    if (isset($_SESSION['user_id'])) { 
+    // Check if user is logged in
+    if (isset($_SESSION['user_id'])) {
         $userId = $_SESSION['user_id']; // Assuming user ID is stored in the session
     } else {
         // Redirect if user is not logged in
@@ -22,14 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $bio = $_POST['bio'] ?? '';
 
     // Initialize variables for file upload paths
-    $cvUploadPath = ''; 
+    $cvUploadPath = '';
     if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
         $cvTmpName = $_FILES['cv']['tmp_name'];
         $cvUploadPath = 'uploads/' . basename($_FILES['cv']['name']);
         move_uploaded_file($cvTmpName, $cvUploadPath);
     }
 
-        require_once 'dbh.inc.php'; 
+    require_once 'dbh.inc.php';
 
 
     // Prepare to store the file content as BLOB
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     try {
         // Include your database connection script
-        
+
         // Prepare your SQL query using prepared statements to prevent SQL injection
         $stmt = $pdo->prepare("UPDATE users SET studyField = ?, facebook = ?, instagram = ?, linkedin = ?, bio = ?, cv = ?, profile_image = ?, interests = ? WHERE id = ?");
 
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Redirect to a success page
         header("Location: ../index.php");
         exit();
-        
+
     } catch (PDOException $e) {
         // Redirect to error page with error message
         header("Location: register1.inc.php?error=db_error");

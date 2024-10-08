@@ -7,7 +7,7 @@ require_once 'dbh.inc.php';
 
 
 if (isset($_SESSION['user_id'])) { // Check if user is logged in
-    
+
     $userId = $_SESSION['user_id']; // Assuming user ID is stored in the session
     $data = json_decode(file_get_contents('php://input'), true); // Get JSON data from AJAX request
     $postId = $data['postId'];

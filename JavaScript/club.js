@@ -37,31 +37,15 @@ scrollToTop.onclick = function () {
 
 // test //
 // Show create event modal when create button is clicked
-document.getElementById("create_event").addEventListener("click", function () {
-  document.getElementById("ctab3_create").style.display = "block";
-});
-
-// Hide create event modal when post event button is clicked
-document.getElementById("post_event").addEventListener("click", function () {
-  document.getElementById("ctab3_create").style.display = "none";
-});
-
-// Show create event modal when edit button is clicked
-document.querySelectorAll(".edit_event").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    document.getElementById("ctab3_create").style.display = "block";
-  });
-});
 
 // Close create event modal if clicked outside
 document.addEventListener("click", function (event) {
   const createContainer = document.getElementById("ctab3_2_container");
   const isCreateEventButton = event.target.id === "create_event";
-  const isEditEventButton = event.target.classList.contains("edit_event");
   const isClickInsideCreate =
     createContainer && createContainer.contains(event.target);
 
-  if (!isClickInsideCreate && !isCreateEventButton && !isEditEventButton) {
+  if (!isClickInsideCreate && !isCreateEventButton) {
     document.getElementById("ctab3_create").style.display = "none";
   }
 });
@@ -193,94 +177,39 @@ requestTabs.forEach(function (tab) {
 
 // create event //
 // Add photos to the post
-document.getElementById("post_photo").addEventListener("click", function () {
-  var fileInput = document.getElementById("post_image_input");
-  if (fileInput) {
-    fileInput.click();
-  }
-});
+var post_photo = document.getElementById("post_photo");
+var post_image_input = document.getElementById("post_image_input");
 
-document
-  .getElementById("post_image_input")
-  .addEventListener("change", function () {
+if (post_photo) {
+  post_photo.addEventListener("click", function () {
+    var fileInput = document.getElementById("post_image_input");
+    if (fileInput) {
+      fileInput.click();
+    }
+  });
+}
+
+if (post_image_input) {
+  post_image_input.addEventListener("change", function () {
     var files = this.files;
     var insertedPhotos = document.getElementById("inserted_photos");
-
     // Check if the maximum number of photos has been reached
     if (insertedPhotos.children.length >= 4) {
       alert("You can only add up to 4 photos.");
       return;
     }
-
     for (var i = 0; i < files.length; i++) {
       var file = files[i];
       var reader = new FileReader();
-
       reader.onload = function (e) {
         // Create a new image element
         var img = document.createElement("img");
-
         // Set the source attribute of the image
         img.src = e.target.result;
-
         // Append the image to the container
         insertedPhotos.appendChild(img);
       };
-
       reader.readAsDataURL(file);
     }
   });
-
-// teeeeeeeeeeeeeeest/
-// const userReactionDiv = document.querySelector(".user_reaction");
-// const iconDivs = userReactionDiv.querySelectorAll(
-//   ".love, .upvote, .downvote, .repost, .bookmark"
-// );
-
-// document.querySelectorAll(".user_reaction > div").forEach((element) => {
-//   element.addEventListener("click", function () {
-//     const icon = element.querySelector("ion-icon");
-//     const iconName = icon.getAttribute("name");
-//     const outlinedIcon = iconName.endsWith("-outline");
-//     const span = element.querySelector("span"); // Get the span inside the div
-
-//     if (outlinedIcon) {
-//       icon.setAttribute("name", iconName.replace("-outline", ""));
-//       element.classList.add("reacted");
-
-//       // Increment the number in the span
-//       span.textContent = parseInt(span.textContent) + 1;
-//     } else {
-//       icon.setAttribute("name", iconName + "-outline");
-//       element.classList.remove("reacted");
-
-//       // Decrement the number in the span
-//       span.textContent = parseInt(span.textContent) - 1;
-//     }
-//   });
-// });
-
-// document.querySelectorAll(".user_reaction > div").forEach((element) => {
-//   element.addEventListener("click", function () {
-//     const action = this.classList[0]; // Gets the class name, e.g., "love"
-//     const postId = this.closest(".user_reaction").dataset.postId; // Get post ID from parent div
-//     console.log(action, postId);
-//     fetch("includes/update_reaction.php", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ action: action, postId: postId }),
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         if (data.success) {
-//           // Optionally update UI with new counts here
-//           console.log(data.message);
-//         } else {
-//           console.error(data.message);
-//         }
-//       })
-//       .catch((error) => console.error("Error:", error));
-//   });
-// });
+}

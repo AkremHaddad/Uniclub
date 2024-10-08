@@ -11,10 +11,10 @@ require_once 'config_session.inc.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the raw POST data (in case it's sent via JSON)
     $input = json_decode(file_get_contents('php://input'), true);
-    
+
     // Validate post_id (check if it's a valid integer)
     $postId = isset($input['post_id']) ? (int)$input['post_id'] : 0;
-    
+
     if ($postId <= 0) {
         echo json_encode(['success' => false, 'message' => 'Invalid post ID.']);
         exit;
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         LEFT JOIN clubmembers cm ON cm.clubId = c.id AND cm.userId = :user_id
         WHERE p.id = :post_id;
     ";
-    
+
     $stmt = $pdo->prepare($query);
     $stmt->execute(['user_id' => $userId, 'post_id' => $postId]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);

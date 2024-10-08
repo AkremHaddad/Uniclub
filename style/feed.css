@@ -34,7 +34,7 @@
   margin-left: 1vw;
 }
 
-.post > div:first-child {
+.club_name_photo_container {
   display: flex;
   margin-left: 1vw;
   margin-top: 1vh;
@@ -49,6 +49,12 @@
 }
 
 .post > div:first-child span {
+  margin-right: auto;
+  font-size: clamp(1rem, 2vw, 2.5rem);
+  align-self: center;
+}
+
+.event_container > div:first-child span {
   margin-right: auto;
   font-size: clamp(1rem, 2vw, 2.5rem);
   align-self: center;
@@ -89,7 +95,7 @@ ion-icon {
   display: grid;
   gap: 2px;
   width: 100%; /* Make it take full width */
-  max-height: 600px; /* Maximum height to prevent overflow */
+  max-height: 400px; /* Maximum height to prevent overflow */
 }
 
 .post-photos img {
@@ -99,7 +105,7 @@ ion-icon {
 
 .photos-1 img {
   height: auto; /* Full width, auto height */
-  max-height: 600px; /* Optional: Limit max height */
+  max-height: 400px; /* Optional: Limit max height */
 }
 
 .photos-2 {
@@ -157,4 +163,10 @@ ion-icon {
 
 .reacted {
   background-color: #4a8798 !important;
+}
+.club_photo {
+  width: 3vw;
+  height: 3vw;
+  object-fit: cover;
+  border-radius: 50%;
 }

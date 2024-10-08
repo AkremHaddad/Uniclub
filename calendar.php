@@ -1,6 +1,8 @@
 <?php
 require_once 'includes/config_session.inc.php';
 require_once 'includes/getEvents.php';
+require_once 'includes/account.inc.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -16,43 +18,45 @@ require_once 'includes/getEvents.php';
       rel="stylesheet"
     />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <link rel="stylesheet" href="../pfa_final/style/style.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/navbar.css" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/calendar.css" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/style.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/navbar.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/calendar.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/club.css?<?php echo time(); ?>" type="text/css"/>
+    <link rel="stylesheet" href="../pfa_final/style/feed.css?<?php echo time(); ?>" type="text/css"/>
   </head>
 
   <body class="body1">
     <!-- -------------------------------------Navbar------------------------------------------>
     <nav>
-        <ul class="sidebar">
-          <li onclick="HideSidebar()">
-            <a><img src="media/close1.svg" /></a>
-          </li>
-          <li>
-            <input class="searchbar" type="text" value="Search..." />
-          </li>
-          <li><a href="">calendar</a></li>
-          <li><a href="">notifications</a></li>
-          <li><a href="">support</a></li>
-          <li id="loginButton1" class="loginButton">
-            <a href="sign_log.php">account</a>
-          </li>
-        </ul>
-        <ul>
-          <li><a href="index.php">Uniclub</a></li>
-          <li class="hideOnMobile">
-            <input class="searchbar" type="text" value="Search..." />
-          </li>
-          <li class="hideOnMobile"><a href="">calendar</a></li>
-          <li class="hideOnMobile"><a href="">notifications</a></li>
-          <li class="hideOnMobile"><a href="">support</a></li>
-          <li id="loginButton2" class="loginButton hideOnMobile">
-            <a href="sign_log.php">account</a>
-          </li>
-          <li class="menuButton" onclick="ShowSidebar()">
-            <a><img src="media/menu.svg" /></a>
-          </li>
-        </ul>
+      <ul class="sidebar">
+        <li onclick="HideSidebar()">
+          <a><img src="media/close1.svg" /></a>
+        </li>
+        <li>
+          <input class="searchbar" type="text" value="Search..." />
+        </li>
+        <li><a href="calendar.php">calendar</a></li>
+        <li><a href="">notifications</a></li>
+        <li><a href="">support</a></li>
+        <?php 
+          account1($pdo);
+        ?> 
+      </ul>
+      <ul>
+        <li><a href="index.php">Uniclub</a></li>
+        <li class="hideOnMobile">
+          <input class="searchbar" type="text" value="Search..." />
+        </li>
+        <li class="hideOnMobile"><a href="calendar.php">calendar</a></li>
+        <li class="hideOnMobile"><a href="">notifications</a></li>
+        <li class="hideOnMobile"><a href="">support</a></li>
+        <?php
+          account2($pdo);
+        ?>
+        <li class="menuButton" onclick="ShowSidebar()">
+          <a><img src="media/menu.svg" /></a>
+        </li>
+      </ul>
     </nav>
     
     <!----------------------------------------calendar------------------------------------------>
@@ -87,9 +91,13 @@ require_once 'includes/getEvents.php';
 
 
 
-    <script src="JavaScript/navbar.js"></script>
-    <script src="JavaScript/calendar.js"></script>
+    <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/calendar.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/club.js?<?php echo time(); ?>"></script>
+    <script src="JavaScript/feed.js?<?php echo time(); ?>"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </body>
 </html>
+
+

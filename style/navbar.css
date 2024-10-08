@@ -1,6 +1,6 @@
 nav {
   overflow: hidden;
-  background-color: var(--main-bg-color-5);
+  background-color: var(--main-bg-color-4);
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -47,7 +47,7 @@ nav input {
   color: black;
 }
 
-nav ul:last-child li:not(:nth-last-child(2)):hover {
+nav > ul:last-child li:not(:nth-last-child(2)):hover {
   background-color: #5e9abd;
 }
 
@@ -166,7 +166,7 @@ nav li:first-child {
 }
 
 .dropdown_menu li:hover {
-  background-color: #f1f1f1;
+  background-color: #5e9abd;
 }
 
 .dropdown_menu button {

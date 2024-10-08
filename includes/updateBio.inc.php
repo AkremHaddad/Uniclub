@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once 'dbh.inc.php'; // Include database connection
 
@@ -20,6 +21,11 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['club_id'])) {
 
 $user_id = $_SESSION['user_id'];
 $club_id = $_SESSION['club_id'];
+
+if (strlen($newBio) > 400) {
+    echo json_encode(['success' => false, 'message' => 'Bio must not exceed 400 characters']);
+    exit();
+}
 
 // Check if the user is an admin or club owner
 $query = "

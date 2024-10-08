@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 require_once 'dbh.inc.php'; // Database connection
 require_once 'config_session.inc.php';
 
-function getPostsWithClubInfo(object $pdo) {
+function getPostsWithClubInfo(object $pdo)
+{
     $query = "
         SELECT 
             posts.id AS postId,
@@ -69,7 +71,8 @@ function getPostsWithClubInfo(object $pdo) {
     return $posts;
 }
 
-function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId) {
+function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId)
+{
     $query = "
         SELECT 
             posts.id AS postId,
@@ -154,11 +157,10 @@ function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId) {
 
 
 // Assume userId is available from the session or authentication
-if(isset($_SESSION["user_id"]))
-{
+if (isset($_SESSION["user_id"])) {
     $userId = $_SESSION["user_id"];
     $posts = getPostsWithClubInfoAndUserReactions($pdo, $userId);
-}else {
+} else {
     $posts = getPostsWithClubInfo($pdo);
 }
 

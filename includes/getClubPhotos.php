@@ -8,8 +8,9 @@ error_reporting(E_ALL);
 require_once 'dbh.inc.php'; // Database connection
 require_once 'config_session.inc.php';
 
-function getProfileCover(object $pdo, int $club_id): array {
-      $query = "
+function getProfileCover(object $pdo, int $club_id): array
+{
+    $query = "
         SELECT
             c.name AS club_name,
             c.cover_photo,
@@ -50,9 +51,9 @@ function getProfileCover(object $pdo, int $club_id): array {
 
 // Check if 'club_id' exists in session or set default
 if (isset($_SESSION['club_id'])) {
-  $club_id = $_SESSION['club_id'];
+    $club_id = $_SESSION['club_id'];
 } else {
-  $club_id = 1;
+    $club_id = 1;
 }
 
 // Fetch profile cover information
@@ -60,4 +61,3 @@ $ProfileCover = getProfileCover($pdo, $club_id);
 
 // Return the result as JSON
 echo json_encode($ProfileCover);
-

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -8,7 +9,8 @@ require_once 'dbh.inc.php'; // Database connection
 require_once 'config_session.inc.php';
 
 
-function getPostsWithClubInfo(object $pdo, int $club_id):array {
+function getPostsWithClubInfo(object $pdo, int $club_id): array
+{
     $query = "
         SELECT 
             posts.id AS postId,
@@ -76,7 +78,8 @@ function getPostsWithClubInfo(object $pdo, int $club_id):array {
     return $posts;
 }
 
-function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $club_id) {
+function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $club_id)
+{
     $query = "
         SELECT 
             posts.id AS postId,
@@ -160,15 +163,14 @@ function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $clu
 
 
 if (isset($_SESSION['club_id'])) {
-  $club_id = $_SESSION['club_id'];
+    $club_id = $_SESSION['club_id'];
 } else {
-  $club_id = 1;
+    $club_id = 1;
 }
- if(isset($_SESSION['user_id']))
-{
+if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
     $posts = getPostsWithClubInfoAndUserReactions($pdo, $userId, $club_id);
-}else{
+} else {
     $posts = getPostsWithClubInfo($pdo, $club_id);
 }
 

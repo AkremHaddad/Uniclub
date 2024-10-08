@@ -56,14 +56,14 @@ fetch("includes/getClubPosts.php")
                     : ""
                 }
               </a>
-              </div>
+            </div>
               <span>${post.clubName}</span>
               ${
                 post.is_user_admin
                   ? `<button class="delete_post">delete</button>`
                   : ""
               }           
-            </div>
+          </div>
           <div class="post_text">${post.text}</div>
           <div class="post-photos photos-${numberOfPhotos}">
             ${postPhotos

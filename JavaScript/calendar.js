@@ -65,6 +65,12 @@ const renderCalendar = () => {
   daysTag.innerHTML = liTag;
 
   addEventListenersToDays(); // Call function to add click events
+
+  // Automatically select and show events for the current day
+  const todayLi = document.querySelector(".days li.active");
+  if (todayLi) {
+    todayLi.click(); // Simulate a click on the current day's li element
+  }
 };
 
 prevNextIcon.forEach((icon) => {
@@ -102,10 +108,10 @@ const addEventListenersToDays = () => {
 
       if (dayNumber && month && year) {
         const selectedDate = new Date(year, month, Number(dayNumber) + 1);
-        const dayName = selectedDate.toLocaleString("default", {
-          weekday: "long",
-        });
-        // currentDay.innerHTML = `<p>${dayName}</p>, <span>${dayNumber}</span>`;
+        // const dayName = selectedDate.toLocaleString("default", {
+        //   weekday: "long",
+        // });
+        // // currentDay.innerHTML = `<p>${dayName}</p>, <span>${dayNumber}</span>`;
 
         // Convert date to YYYY-MM-DD format for the query
         const formattedDate = selectedDate.toISOString().split("T")[0];
@@ -118,77 +124,103 @@ const addEventListenersToDays = () => {
             eventsContainer.innerHTML = ""; // Clear previous events
 
             events.forEach((event) => {
-              // Create event HTML structure
+              const isAttending = event.isAttending
+                ? "add-circle"
+                : "add-circle-outline";
+
               const eventHTML = `
-                <div class="event">
-                  <div class="eventTitle">${event.title}</div>
-                  <div class="eventDiscription">${event.description1}</div>
-                  <div class="eventPhotos">
-                    <div class="photo-container">
-                      ${
-                        event.photos
-                          ? `<img class="eventPhoto" src="data:image/jpeg;base64,${event.photos}" alt="Event Photo" style="width: 100%;">`
-                          : "No photo"
-                      }
-                      <button class="view-more" data-photo="${
-                        event.photos
-                      }">View More</button>
-                    </div>
-                  </div>
-                  <div class="user_reaction">
-                      <div class="love">
-                        <div>
-                          <ion-icon name="heart-outline"></ion-icon>
-                        </div>
-                        <span>
-                          ${event.loveReacts}
-                        </span>
-                      </div>
-                      <div class="upvote">
-                        <div>
-                          <ion-icon name="arrow-up-circle-outline"></ion-icon>
-                        </div>
-                        <span>
-                          ${event.upvotes}
-                        </span>
-                      </div>
-                      <div class="downvote">
-                        <div>
-                          <ion-icon name="arrow-down-circle-outline"></ion-icon>
-                        </div>
-                        <span>
-                          ${event.downvotes}
-                        </span>
-                      </div>
-                      <div class="bookmark">
-                        <div>
-                          <ion-icon name="bookmark-outline"></ion-icon>
-                        </div>
-                        <span>
-                          ${event.bookmarks}
-                        </span>
-                      </div>
-                  </div>
+                <div class="event" data-event-id="${event.id}">
+              <div class="club_name_photo_container">
+                <div>
+                  <a href="../pfa_final/club.php?club_id=${event.clubId}">
+                    ${
+                      event.clubProfilePhoto
+                        ? `<img data-post-id="${event.clubId}" class="club_photo" src="data:image/jpeg;base64,${event.clubProfilePhoto}" alt="Profile Photo" />`
+                        : ""
+                    }
+                  </a>
                 </div>
-              `;
+                <span>${event.clubName}</span>         
+                <ion-icon class="attend" name="${isAttending}"></ion-icon>
+              </div>
+              <div class="event_part1">
+                <div class="event_name">
+                  <p>Event: ${event.title}</p>
+                </div>
+              </div>
+              <div>
+                <p class="event_description">${event.description1}</p>
+              </div>
+              <div class="post-photos photos-1">
+                ${
+                  event.photos
+                    ? `<img class="post-photos photos-1" src="data:image/jpeg;base64,${event.photos}" alt="Event Photo" style="width: 100%;">`
+                    : ""
+                }
+              </div>
+              <div style="display: flex">
+              <div class="eventDiscription">${
+                event.attendeeCount
+              } people attending</div>
+                <p class="event_date">date: ${event.date1}</p>
+              </div>
+              </div>`;
               eventsContainer.innerHTML += eventHTML;
             });
 
-            // Attach event listeners to dynamically created buttons
-            document.querySelectorAll(".view-more").forEach((button) => {
-              button.addEventListener("click", (e) => {
-                const photoData = e.target.getAttribute("data-photo");
-                if (photoData) {
-                  // Create a Blob from the Base64 data
-                  const blob = new Blob(
-                    [Uint8Array.from(atob(photoData), (c) => c.charCodeAt(0))],
-                    { type: "image/jpeg" }
-                  );
-                  const url = URL.createObjectURL(blob);
-                  window.open(url, "_blank");
-                }
+            // Select all the icons with the class 'attend'
+            const attendIcons = document.querySelectorAll(".attend");
+
+            // Add an event listener to each icon
+            attendIcons.forEach((icon) => {
+              icon.addEventListener("click", function () {
+                const eventId =
+                  this.closest(".event").getAttribute("data-event-id");
+                const isAttending =
+                  this.getAttribute("name") === "add-circle-outline"; // Check current icon state
+                const action = isAttending ? "attend" : "unattend"; // Decide action based on current state
+                console.log("Event ID:", eventId, "Action:", action); // Console log for debugging
+
+                // Send the request to the server
+                fetch("includes/attend_event.php", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                  },
+                  body: `event_id=${eventId}&action=${action}`,
+                })
+                  .then((response) => response.json())
+                  .then((data) => {
+                    if (data.success) {
+                      // Toggle the icon based on the new state
+                      if (isAttending) {
+                        this.setAttribute("name", "add-circle");
+                      } else {
+                        this.setAttribute("name", "add-circle-outline");
+                      }
+                    } else {
+                      alert(data.message || "An error occurred.");
+                    }
+                  })
+                  .catch((error) => console.error("Error:", error));
               });
             });
+
+            // Attach event listeners to dynamically created buttons
+            // document.querySelectorAll(".view-more").forEach((button) => {
+            //   button.addEventListener("click", (e) => {
+            //     const photoData = e.target.getAttribute("data-photo");
+            //     if (photoData) {
+            //       // Create a Blob from the Base64 data
+            //       const blob = new Blob(
+            //         [Uint8Array.from(atob(photoData), (c) => c.charCodeAt(0))],
+            //         { type: "image/jpeg" }
+            //       );
+            //       const url = URL.createObjectURL(blob);
+            //       window.open(url, "_blank");
+            //     }
+            //   });
+            // });
           })
           .catch((error) => console.error("Error:", error));
       } else {
