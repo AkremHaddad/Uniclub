@@ -56,3 +56,56 @@ if (profileImage) {
     }
   });
 }
+
+async function getUnreadNotifications() {
+  try {
+    const response = await fetch("includes/getNotif.php"); // Adjust the URL if necessary
+    const notifications = await response.json(); // Assuming the response is JSON
+
+    if (Array.isArray(notifications) && notifications.length > 0) {
+      // Call a function to display the notifications
+      displayNotifications(notifications);
+    } else {
+      console.log("No unread notifications.");
+    }
+  } catch (error) {
+    console.error("Error fetching notifications:", error);
+  }
+}
+
+// Function to display notifications (you can customize how to show them)
+function displayNotifications(notifications) {
+  const notifContainer = document.getElementById("notifContainer"); // A container in your HTML
+
+  // Clear the container before appending new notifications
+  notifContainer.innerHTML = "";
+
+  notifications.forEach((notifText) => {
+    const notifElement = document.createElement("div");
+    notifElement.classList.add("notification");
+    notifElement.innerHTML = notifText; // Display the notification text
+
+    notifContainer.appendChild(notifElement);
+  });
+}
+
+var notification_container = document.getElementById("notification_container");
+
+if (notification_container) {
+  notification_container.addEventListener("click", function () {
+    var dropdown = document.getElementById("notificationDropdownMenu");
+    if (dropdown.style.display === "none" || dropdown.style.display === "") {
+      dropdown.style.display = "block";
+    }
+  });
+}
+
+// // Close dropdown if clicked outside
+if (notification_container) {
+  window.addEventListener("click", function (e) {
+    var dropdown = document.getElementById("notificationDropdownMenu");
+    if (!notification_container.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+}

@@ -50,11 +50,8 @@ function getProfileCover(object $pdo, int $club_id): array
 }
 
 // Check if 'club_id' exists in session or set default
-if (isset($_SESSION['club_id'])) {
-    $club_id = $_SESSION['club_id'];
-} else {
-    $club_id = 1;
-}
+isset($_SESSION['club_id']) ? $club_id = $_SESSION['club_id'] : $club_id = null;
+
 
 // Fetch profile cover information
 $ProfileCover = getProfileCover($pdo, $club_id);

@@ -1,130 +1,134 @@
 <?php
 require_once 'includes/config_session.inc.php';
 require_once 'includes/login_view.inc.php';
+require_once 'includes/account.inc.php';
+require_once 'includes/dbh.inc.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Uniclub</title>
-    <link rel="icon" type="image/svg+xml" href="media/Logo.svg" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../pfa_final/style/style.css?<?php echo time(); ?>" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/navbar.css?<?php echo time(); ?>" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/log.css?<?php echo time(); ?>" type="text/css"/>
-    <link rel="stylesheet" href="../pfa_final/style/feed.css?<?php echo time(); ?>" type="text/css"/>
-  </head>
 
-  <body>
-    <!-- -------------------------------------Navbar------------------------------------------>
-    <nav>
-      <ul class="sidebar">
-        <li onclick="HideSidebar()">
-          <a><img src="media/close1.svg" /></a>
-        </li>
-        <li>
-          <input class="searchbar" type="text" value="Search..." />
-        </li>
-        <li><a href="calendar.php">calendar</a></li>
-        <li><a href="">notifications</a></li>
-        <li><a href="">support</a></li>
-        <li id="loginButton1" class="loginButton">
-          <a href="sign_log.php">account</a>
-        </li>
-      </ul>
-      <ul>
-        <li><a href="index.php">Uniclub</a></li>
-        <li class="hideOnMobile">
-          <input class="searchbar" type="text" value="Search..." />
-        </li>
-        <li class="hideOnMobile"><a href="calendar.php">calendar</a></li>
-        <li class="hideOnMobile"><a href="">notifications</a></li>
-        <li class="hideOnMobile"><a href="">support</a></li>
-        <li id="loginButton2" class="loginButton hideOnMobile">
-          <a href="sign_log.php">account</a>
-        </li>
-        <li class="menuButton" onclick="ShowSidebar()">
-          <a><img src="media/menu.svg" /></a>
-        </li>
-      </ul>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uniclub</title>
+  <link rel="icon" type="image/svg+xml" href="media/Logo.svg" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="../pfa_final/style/style.css?<?php echo time(); ?>"
+    type="text/css" />
+  <link rel="stylesheet"
+    href="../pfa_final/style/navbar.css?<?php echo time(); ?>"
+    type="text/css" />
+  <link rel="stylesheet"
+    href="../pfa_final/style/log.css?<?php echo time(); ?>"
+    type="text/css" />
+  <link rel="stylesheet"
+    href="../pfa_final/style/feed.css?<?php echo time(); ?>"
+    type="text/css" />
+</head>
 
-    <!------------------------------------Login/signup Popup---------------------------------------->
-    <div id="popup1" class="popup">
-      <div id="container" class="container popContent">
-        <div class="form-container sign-up-container">
-          <form id="signupForm" method="post">
-            <h1>Create Account</h1>
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"
-                ><i class="fab fa-google-plus-g"></i
-              ></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your email for registration</span>
-            <input placeholder="Fullname" name="fullName" />
-            <input placeholder="phone number" name="phoneNumber" />
-            <input placeholder="Email" name="email" />
-            <input type="password" placeholder="Password" name="pwd" />
-            <button id="signin1" type="submit">Sign Up</button>
-            <div class="form_error" id="errors">
+<body>
+  <!-- -------------------------------------Navbar------------------------------------------>
+  <nav>
+    <ul class="sidebar">
+      <li onclick="HideSidebar()">
+        <a><img src="media/close1.svg" /></a>
+      </li>
+      <li>
+        <input class="searchbar" type="text" value="Search..." />
+      </li>
+      <li><a href="calendar.php">calendar</a></li>
+      <li><a href="">support</a></li>
+      <?php
+          account1($pdo);
+?>
+    </ul>
+    <ul>
+      <li><a href="index.php">Uniclub</a></li>
+      <li class="hideOnMobile">
+        <input class="searchbar" type="text" value="Search..." />
+      </li>
 
-            </div>
-            <!-- ?php
+      <li class="hideOnMobile"><a href="calendar.php">calendar</a></li>
+      <li class="hideOnMobile"><a href="">support</a></li>
+      <?php
+  account2($pdo);
+?>
+      <li class="menuButton" onclick="ShowSidebar()">
+        <a><img src="media/menu.svg" /></a>
+      </li>
+    </ul>
+  </nav>
+
+  <!------------------------------------Login/signup Popup---------------------------------------->
+  <div id="popup1" class="popup">
+    <div id="container" class="container popContent">
+      <div class="form-container sign-up-container">
+        <form id="signupForm" method="post">
+          <h1>Create Account</h1>
+          <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <span>or use your email for registration</span>
+          <input placeholder="Fullname" name="fullName" />
+          <input placeholder="phone number" name="phoneNumber" />
+          <input placeholder="Email" name="email" />
+          <input type="password" placeholder="Password" name="pwd" />
+          <button id="signin1" type="submit">Sign Up</button>
+          <div class="form_error" id="errors">
+
+          </div>
+          <!-- ?php
             check_signup_errors();
             ?> -->
-          </form>
-        </div>
-        <div class="form-container sign-in-container">
-          <form action="includes/login.inc.php" method="post">
-            <h1>Log in</h1>
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"
-                ><i class="fab fa-google-plus-g"></i
-              ></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-            <span>or use your account</span>
-            <input type="email" placeholder="Email" name="email" />
-            <input type="password" placeholder="Password" name="pwd" />
-            <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
-            <?php
+        </form>
+      </div>
+      <div class="form-container sign-in-container">
+        <form action="includes/login.inc.php" method="post">
+          <h1>Log in</h1>
+          <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <span>or use your account</span>
+          <input type="email" placeholder="Email" name="email" />
+          <input type="password" placeholder="Password" name="pwd" />
+          <a href="#">Forgot your password?</a>
+          <button>Sign In</button>
+          <?php
             check_login_errors();
-            ?>
-          </form>
-        </div>
+?>
+        </form>
+      </div>
 
 
-        <div class="overlay-container">
-          <div class="overlay">
-            <div class="overlay-panel overlay-left">
-              <h1>Welcome Back!</h1>
-              <p>
-                To keep connected with us please login with your personal info
-              </p>
-              <button class="ghost" id="signIn">Sign In</button>
-            </div>
-            <div class="overlay-panel overlay-right">
-              <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
-              <button class="ghost" id="signUp">Sign Up</button>
-            </div>
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your personal details and start journey with us</p>
+            <button class="ghost" id="signUp">Sign Up</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
-    <script src="JavaScript/log.js?<?php echo time(); ?>"></script>
-    <script src="JavaScript/signup.js?<?php echo time(); ?>"></script>
-    </body>
+  <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
+  <script src="JavaScript/log.js?<?php echo time(); ?>"></script>
+  <script src="JavaScript/signup.js?<?php echo time(); ?>"></script>
+</body>
+
 </html>

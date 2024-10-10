@@ -162,11 +162,8 @@ function getPostsWithClubInfoAndUserReactions(object $pdo, int $userId, int $clu
 // Assume userId is available from the session or authentication.
 
 
-if (isset($_SESSION['club_id'])) {
-    $club_id = $_SESSION['club_id'];
-} else {
-    $club_id = 1;
-}
+isset($_SESSION['club_id']) ? $club_id = $_SESSION['club_id'] : $club_id = null;
+
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
     $posts = getPostsWithClubInfoAndUserReactions($pdo, $userId, $club_id);

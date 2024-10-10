@@ -58,30 +58,30 @@ document.querySelectorAll(".delete_event").forEach(function (btn) {
 });
 
 // Hide delete event modal when confirmed delete button is clicked
-document
-  .getElementById("confirm_delete_event")
-  .addEventListener("click", function () {
-    document.getElementById("ctab3_delete").style.display = "none";
-  });
+// document
+//   .getElementById("confirm_delete_event")
+//   .addEventListener("click", function () {
+//     document.getElementById("ctab3_delete").style.display = "none";
+//   });
 
 // Hide delete event modal when cancel button is clicked
-document.querySelectorAll(".cancel").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    document.getElementById("ctab3_delete").style.display = "none";
-  });
-});
+// document.querySelectorAll(".cancel").forEach(function (btn) {
+//   btn.addEventListener("click", function () {
+//     document.getElementById("ctab3_delete").style.display = "none";
+//   });
+// });
 
 // Close delete event modal if clicked outside
-document.addEventListener("click", function (event) {
-  const deleteContainer = document.getElementById("ctab3_delete_container");
-  const isDeleteEventButton = event.target.classList.contains("delete_event");
-  const isClickInsideDelete =
-    deleteContainer && deleteContainer.contains(event.target);
+// document.addEventListener("click", function (event) {
+//   const deleteContainer = document.getElementById("ctab3_delete_container");
+//   const isDeleteEventButton = event.target.classList.contains("delete_event");
+//   const isClickInsideDelete =
+//     deleteContainer && deleteContainer.contains(event.target);
 
-  if (!isClickInsideDelete && !isDeleteEventButton) {
-    document.getElementById("ctab3_delete").style.display = "none";
-  }
-});
+//   if (!isClickInsideDelete && !isDeleteEventButton) {
+//     document.getElementById("ctab3_delete").style.display = "none";
+//   }
+// });
 
 // Accept member functionality
 const acceptButtons = document.querySelectorAll(".accept");
@@ -145,35 +145,35 @@ document.addEventListener("click", function (event) {
 });
 
 // Tabs functionality for owner requests
-const requestTabs = document.querySelectorAll(".request_tab");
-const requests = document.querySelectorAll(".request");
+// const requestTabs = document.querySelectorAll(".request_tab");
+// const requests = document.querySelectorAll(".request");
 
-requestTabs.forEach(function (tab) {
-  tab.addEventListener("click", function () {
-    const clickedId = this.id.replace("request_tab", "request");
+// requestTabs.forEach(function (tab) {
+//   tab.addEventListener("click", function () {
+//     const clickedId = this.id.replace("request_tab", "request");
 
-    // Hide all requests
-    requests.forEach(function (request) {
-      request.style.display = "none";
-    });
+//     // Hide all requests
+//     requests.forEach(function (request) {
+//       request.style.display = "none";
+//     });
 
-    // Show the clicked request
-    document.getElementById(clickedId).style.display = "block";
-  });
-});
+//     // Show the clicked request
+//     document.getElementById(clickedId).style.display = "block";
+//   });
+// });
 
-// Change focus (highlight) on owner requests tabs
-requestTabs.forEach(function (tab) {
-  tab.addEventListener("click", function () {
-    // Reset all tabs to default background color
-    requestTabs.forEach(function (t) {
-      t.style.backgroundColor = " var(--main-bg-color-3)";
-    });
+// // Change focus (highlight) on owner requests tabs
+// requestTabs.forEach(function (tab) {
+//   tab.addEventListener("click", function () {
+//     // Reset all tabs to default background color
+//     requestTabs.forEach(function (t) {
+//       t.style.backgroundColor = " var(--main-bg-color-3)";
+//     });
 
-    // Highlight the clicked tab
-    this.style.backgroundColor = "var(--main-bg-color-1)";
-  });
-});
+//     // Highlight the clicked tab
+//     this.style.backgroundColor = "var(--main-bg-color-1)";
+//   });
+// });
 
 // create event //
 // Add photos to the post

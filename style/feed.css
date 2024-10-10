@@ -95,7 +95,7 @@ ion-icon {
   display: grid;
   gap: 2px;
   width: 100%; /* Make it take full width */
-  max-height: 400px; /* Maximum height to prevent overflow */
+  max-height: 600px; /* Maximum height to prevent overflow */
 }
 
 .post-photos img {

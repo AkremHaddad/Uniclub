@@ -50,7 +50,6 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
         <input class="searchbar" type="text" value="Search..." />
       </li>
       <li><a href="calendar.php">calendar</a></li>
-      <li><a href="">notifications</a></li>
       <li><a href="">support</a></li>
       <?php
           account1($pdo);
@@ -61,8 +60,8 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
       <li class="hideOnMobile">
         <input class="searchbar" type="text" value="Search..." />
       </li>
+
       <li class="hideOnMobile"><a href="calendar.php">calendar</a></li>
-      <li class="hideOnMobile"><a href="">notifications</a></li>
       <li class="hideOnMobile"><a href="">support</a></li>
       <?php
   account2($pdo);
@@ -78,17 +77,17 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
     <div class="club_photos_container">
 
     </div>
+
     <div class="tabs_container">
       <div class="tab" id="posts_tab">Posts</div>
       <div class="tab" id="about_us_tab">About Us</div>
-      <div class="tab" id="manage_events_tab">Manage Events</div>
-      <div class="tab" id="manage_requests_tab">Manage Requests</div>
+      <div class="tab" id="manage_events_tab">Events</div>
+      <div class="tab" id="manage_requests_tab">Request</div>
     </div>
 
 
     <div class="tab_content" id="posts_content">
       <div class="feed2">
-
         <div class="club_feed_container">
 
         </div>
@@ -101,13 +100,17 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
         </div>
       </div>
     </div>
+
     <div class="tab_content" id="about_us_content">
+
     </div>
+
     <div class="tab_content" id="manage_events_content">
       <div class="events_tab_container">
 
       </div>
     </div>
+
     <div id="ctab3_create">
       <div id="ctab3_2_container">
         <div id="title_container">
@@ -128,118 +131,21 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
         </div>
       </div>
     </div>
-    <!-- <div id="ctab3_delete">
-        <div id="ctab3_delete_container">
-          <p>delete this event?</p>
-          <div>
-            <button id="confirm_delete_event">confirm</button>
-            <button class="cancel">cancel</button>
-          </div>
-        </div>
-      </div> -->
-    <div class="tab_content" id="manage_requests_content">
-      <div id="requests_tab">
-        <div id="requests_tabs">
-          <div id="request_tab1" class="request_tab">
-            <p id="r_tab1">Requests to join the club</p>
-          </div>
-          <div id="request_tab2" class="request_tab">
-            <p id="r_tab2">Request disabling the club</p>
-          </div>
-          <div id="request_tab3" class="request_tab">
-            <p id="r_tab3">Request deleting the club</p>
-          </div>
-        </div>
 
-        <div id="request1" class="request">
-          <div id="request1_container">
-            <div class="member_request">
-              <p class="member_name">mouhamed aziz ben yasmina</p>
-              <button id="div_acc">
-                <img src="media/accept.svg" alt="" class="accept" />
-              </button>
-              <button id="div_clo">
-                <img src="media/close.svg" alt="" class="decline" />
-              </button>
-            </div>
-            <div class="member_request">
-              <p class="member_name">Akrem Haddad</p>
-              <button id="div_acc">
-                <img src="media/accept.svg" alt="" class="accept" />
-              </button>
-              <button id="div_clo">
-                <img src="media/close.svg" alt="" class="decline" />
-              </button>
-            </div>
-            <div class="member_request">
-              <p class="member_name">Saber Berriche</p>
-              <button id="div_acc">
-                <img src="media/accept.svg" alt="" class="accept" />
-              </button>
-              <button id="div_clo">
-                <img src="media/close.svg" alt="" class="decline" />
-              </button>
-            </div>
-            <div class="member_request">
-              <p class="member_name">Islem ben Khalifa</p>
-              <button id="div_acc">
-                <img src="media/accept.svg" alt="" class="accept" />
-              </button>
-              <button id="div_clo">
-                <img src="media/close.svg" alt="" class="decline" />
-              </button>
-            </div>
-            <div class="member_request">
-              <p class="member_name">Ghassan Achour</p>
-              <button id="div_acc">
-                <img src="media/accept.svg" alt="" class="accept" />
-              </button>
-              <button id="div_clo">
-                <img src="media/close.svg" alt="" class="decline" />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div id="request2" class="request">
-          <div class="request2and3_container">
-            <p>why you wanna disable the club?</p>
-            <textarea maxlength="400" placeholder="Write here" id="disable_txt"></textarea>
-            <div class="inp_butt_container">
-              <input type="file" id="disable_file" />
-              <button id="disable_club">confirm</button>
-            </div>
-          </div>
-        </div>
-        <div id="request3" class="request">
-          <div class="request2and3_container">
-            <p>why you wanna delete the club?</p>
-            <textarea id="delete_txt" maxlength="400" placeholder="Write here"></textarea>
-            <div class="inp_butt_container">
-              <input type="file" id="delete_file" />
-              <button id="delete_club">confirm</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="ctab4_accept">
-        <div id="ctab4_accept_container">
-          <p>accept request?</p>
-          <div>
-            <button id="confirm_accept_member">confirm</button>
-            <button class="cancel">cancel</button>
-          </div>
-        </div>
-      </div>
-      <div id="ctab4_decline">
-        <div id="ctab4_decline_container">
-          <p>decline request?</p>
-          <div>
-            <button id="confirm_decline_member">confirm</button>
-            <button class="cancel">cancel</button>
-          </div>
-        </div>
+    <div class="tab_content" id="manage_requests_content">
+
+    </div>
+
+    <div id="request_popup" style="display: none;">
+      <div class="popup_content">
+        <p id="popup_request_text"></p>
+        <a id="popup_download_link" href="#" download>
+        </a>
+        <button id="close_popup">Close</button>
       </div>
     </div>
+
+
   </div>
   <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
   <script src="JavaScript/log.js?<?php echo time(); ?>"></script>
@@ -253,6 +159,7 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
   <script src="JavaScript/clubEvents.js?<?php echo time(); ?>"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="JavaScript/club.js?<?php echo time(); ?>"></script>
+  <script src="JavaScript/clubRequest.js?<?php echo time(); ?>"></script>
   <script>
     flatpickr("#eventDate", {
       dateFormat: "Y-m-d", // Desired date format

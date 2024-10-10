@@ -564,7 +564,8 @@
 }
 
 #disable_club,
-#delete_club {
+#delete_club,
+#request_join {
   background-color: #8394a3;
   border-radius: 5px;
   width: 5vw;
@@ -615,17 +616,22 @@
   z-index: 99;
 }
 
-#div_acc {
-  height: 80%;
-  background-color: var(--main-bg-color-1);
-  border: none;
+.div_acc {
+  height: 20px;
+  background-color: gray;
+  border: solid black 1px;
   margin-right: 1vw;
 }
-
-#div_clo {
-  height: 80%;
-  background-color: var(--main-bg-color-1);
-  border: none;
+.div_app {
+  height: 20px;
+  background-color: gray;
+  border: solid black 1px;
+  margin-right: 1vw;
+}
+.div_clo {
+  height: 20px;
+  background-color: gray;
+  border: solid black 1px;
   margin-right: 1vw;
 }
 
@@ -726,15 +732,16 @@
 }
 
 #request1_container {
+  min-width: 400px;
   height: 39vh;
-  padding-left: 10px;
+
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
 }
 
 .member_request {
-  width: 97%;
+  width: 100%;
   height: 50px;
   background-color: var(--main-bg-color-1);
   border-radius: 5px;
@@ -743,6 +750,7 @@
   justify-content: center;
   border: #000 solid 1px;
   margin-bottom: 15px;
+  overflow-x: hidden;
 }
 
 .member_name {
@@ -805,4 +813,100 @@
   border-radius: 4px;
   height: 30px;
   width: 100px;
+}
+
+#member_request {
+  height: 39vh;
+  width: clamp(459px, 50vw, 100vw);
+  min-width: 400px;
+  min-height: 200px;
+  padding: 0px;
+}
+
+/* #request_popup {
+  display: none;
+  overflow: hidden;
+  background-color: #8394a3;
+  height: auto;
+  width: 40vw;
+  min-width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  border: #000 solid 1px;
+  border-radius: 10px;
+} */
+
+/* Popup Overlay */
+#request_popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(0, 0, 0, 0.7); /* Black background with opacity */
+}
+
+/* Popup Content */
+.popup_content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the popup */
+  background-color: white; /* White background */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding around content */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  width: 300px; /* Set a fixed width for the popup */
+  text-align: center; /* Center text */
+}
+
+/* Request Text */
+#popup_request_text {
+  margin-bottom: 15px; /* Space below the text */
+  font-size: 16px; /* Font size for readability */
+  color: #333; /* Darker text color */
+}
+
+/* Download Link as Button */
+#popup_download_link {
+  display: inline-block; /* Make it a block for padding */
+  padding: 10px 15px; /* Padding for button look */
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text color */
+  text-decoration: none; /* Remove underline */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition */
+}
+
+#popup_download_link:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Close Button */
+#close_popup {
+  background: none; /* No background */
+  border: none; /* Remove border */
+  color: #007bff; /* Blue text color */
+  cursor: pointer; /* Pointer cursor */
+  margin-top: 10px; /* Space above the button */
+  font-size: 14px; /* Font size */
+}
+
+#close_popup:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+@media (max-width: 500px) {
+  #request_popup {
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .popup_content {
+    width: 90%; /* Use a percentage width for smaller screens */
+  }
 }
