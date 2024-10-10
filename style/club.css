@@ -910,3 +910,64 @@
     width: 90%; /* Use a percentage width for smaller screens */
   }
 }
+
+/* Container for the club list */
+#clubsList {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap if they overflow */
+  justify-content: center; /* Align items in the center */
+  gap: 20px; /* Spacing between items */
+  padding: 20px; /* Add padding around the container */
+}
+
+/* Each club item */
+.club-item {
+  width: 250px; /* Define a width for each club card */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for hover effect */
+  overflow: hidden; /* Hide overflow content */
+}
+
+/* Club item hover effect */
+.club-item:hover {
+  transform: translateY(-5px); /* Lift the item on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+/* Link styling */
+.myclub_container {
+  background-color: var(--main-bg-color-1); /* Light background for the item */
+
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+  display: block;
+  padding: 20px;
+  text-align: center; /* Center-align the text */
+}
+
+/* Club title */
+.club-item h2 {
+  font-size: 1.5em; /* Make the title a bit larger */
+  margin: 0;
+  color: #333; /* Darker color for the title */
+}
+
+/* Style for the header */
+header {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically within the header */
+  height: 100px; /* Define height for the header */
+  padding: 20px; /* Optional: Add padding around the header */
+  position: relative;
+  top: 0;
+}
+
+/* Style for the heading */
+.myclubsheader {
+  font-size: 2.5em; /* Adjust the font size */
+  color: #333; /* Set the text color */
+  text-align: center; /* Center the text */
+  margin: 0; /* Remove default margin */
+}

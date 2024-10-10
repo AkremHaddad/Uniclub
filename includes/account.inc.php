@@ -12,6 +12,7 @@ function account1(object $pdo)
            <li><a href="/my_profile">My Profile</a></li>
            <li><a href="/bookmarks">My Bookmarks</a></li>
            <li><a href="createClub.php">create club</a></li>
+            <li><a href="myClubs.php">my clubs</a></li>
            <li><form action="includes/logout.inc.php" method="post"><button class="dropdown_menu_button">Log Out</button></form></li>
      ';
     } else {
@@ -42,6 +43,7 @@ function account2(object $pdo)
                 <li><a href="/my-profile">My Profile</a></li>
                 <li><a href="/my-bookmarks">My Bookmarks</a></li>
                 <li><a href="createClub.php">create club</a></li>
+                <li><a href="myClubs.php">my clubs</a></li>
                 <li><form action="includes/logout.inc.php" method="post"><button class="dropdown_menu_button">Log Out</button></form></li>
               </ul></div>
             </li>
@@ -55,6 +57,7 @@ function account2(object $pdo)
             <li><a href="/my-profile">My Profile</a></li>
             <li><a href="/my-bookmarks">My Bookmarks</a></li>
             <li><a href="createClub.php">create club</a></li>
+            <li><a href="myClubs.php">my clubs</a></li>
             <li><form action="includes/logout.inc.php" method="post"><button class="dropdown_menu_button">Log Out</button></form></li>
           </ul></div>
         </li>';
