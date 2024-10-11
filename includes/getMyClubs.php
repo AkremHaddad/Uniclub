@@ -14,7 +14,7 @@ if ($userId) {
         $stmt = $pdo->prepare("
             SELECT c.id, c.name
             FROM club c
-            WHERE c.ownerId = ? 
+            WHERE c.ownerId = ? and c.approved = 1
             OR EXISTS (
                 SELECT 1 FROM clubmembers cm WHERE cm.clubId = c.id AND cm.userId = ?
             )

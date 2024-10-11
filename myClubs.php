@@ -61,6 +61,8 @@ require_once 'includes/dbh.inc.php';
   </section>
 
 
+  <script src="JavaScript/navbar.js?<?php echo time(); ?>"></script>
+
 
 </body>
 

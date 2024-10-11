@@ -19,21 +19,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $profilePhoto = $_FILES['profilePhoto'];
     $coverPhoto = $_FILES['coverPhoto'];
 
-    // Define allowed file types and maximum file size (5MB)
+    // Define allowed file types and maximum file size (16MB for MEDIUMBLOB)
     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
-    $maxFileSize = 5 * 1024 * 1024; // 5MB
+    $maxMediumBlobSize = 16 * 1024 * 1024; // 16MB
 
     // Function to validate and read the uploaded file
-    function validateAndReadFile($file)
+    function validateAndReadFile($file, $maxFileSize)
     {
+        global $allowedTypes;
+
         // Check for file upload errors
         if ($file['error'] !== UPLOAD_ERR_OK) {
             return ['success' => false, 'message' => 'File upload error.'];
         }
 
-        // Check file type and size
-        if (!in_array($file['type'], $GLOBALS['allowedTypes']) || $file['size'] > $GLOBALS['maxFileSize']) {
-            return ['success' => false, 'message' => 'Invalid file type or size.'];
+        // Check file size
+        if ($file['size'] > $maxFileSize) {
+            return ['success' => false, 'message' => 'File exceeds maximum allowed size of 16MB.'];
+        }
+
+        // Check file type
+        if (!in_array($file['type'], $allowedTypes)) {
+            return ['success' => false, 'message' => 'Invalid file type.'];
         }
 
         // Read the file content
@@ -42,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Validate and read both photos
-    $profilePhotoData = validateAndReadFile($profilePhoto);
-    $coverPhotoData = validateAndReadFile($coverPhoto);
+    $profilePhotoData = validateAndReadFile($profilePhoto, $maxMediumBlobSize);
+    $coverPhotoData = validateAndReadFile($coverPhoto, $maxMediumBlobSize);
 
     // Check if both uploads were successful
     if ($profilePhotoData['success'] && $coverPhotoData['success']) {
@@ -66,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
 }
 
-
+// Success and redirect message (Optional)
 echo "<script>alert('Club request sent, admin will approve soon.');</script>";
 echo "<script>window.location.href = '../index.php';</script>";
 
