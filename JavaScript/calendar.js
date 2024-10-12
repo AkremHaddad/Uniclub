@@ -179,7 +179,7 @@ const addEventListenersToDays = () => {
                 const isAttending =
                   this.getAttribute("name") === "add-circle-outline"; // Check current icon state
                 const action = isAttending ? "attend" : "unattend"; // Decide action based on current state
-                console.log("Event ID:", eventId, "Action:", action); // Console log for debugging
+                // console.log("Event ID:", eventId, "Action:", action); // Console log for debugging
 
                 // Send the request to the server
                 fetch("includes/attend_event.php", {

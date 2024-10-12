@@ -32,6 +32,11 @@ require_once 'includes/account.inc.php';
   <link rel="stylesheet"
     href="../pfa_final/style/feed.css?<?php echo time(); ?>"
     type="text/css" />
+  <style>
+    ion-icon {
+      font-size: 3vw;
+    }
+  </style>
 </head>
 
 <body class="body1">

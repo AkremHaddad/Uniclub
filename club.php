@@ -21,20 +21,17 @@ if (isset($_GET['club_id']) && is_numeric($_GET['club_id'])) {
   <link rel="icon" type="image/svg+xml" href="media/Logo.svg" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet"
-    href="../pfa_final/style/style.css?<?php echo time(); ?>"
-    type="text/css" />
+    href="style/style.css?<?php echo time(); ?>" />
   <link rel="stylesheet"
-    href="../pfa_final/style/navbar.css?<?php echo time(); ?>"
-    type="text/css" />
+    href="style/navbar.css?<?php echo time(); ?>" />
   <link rel="stylesheet"
-    href="../pfa_final/style/log.css?<?php echo time(); ?>"
-    type="text/css" />
+    href="style/log.css?<?php echo time(); ?>" />
   <link rel="stylesheet"
-    href="../pfa_final/style/feed.css?<?php echo time(); ?>"
-    type="text/css" />
+    href="style/feed.css?<?php echo time(); ?>" />
   <link rel="stylesheet"
-    href="../pfa_final/style/club.css?<?php echo time(); ?>"
-    type="text/css" />
+    href="style/club.css?<?php echo time(); ?>" />
+  <link rel="stylesheet"
+    href="style/calendar.css?<?php echo time(); ?>" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2024 at 02:24 PM
+-- Generation Time: Oct 12, 2024 at 02:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -58,7 +58,7 @@ CREATE TABLE `club` (
   `ownerId` int(11) NOT NULL,
   `name` text NOT NULL,
   `bio` text DEFAULT NULL,
-  `created_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `profile_photo` mediumblob DEFAULT NULL,
   `cover_photo` mediumblob DEFAULT NULL,
   `approved` tinyint(1) NOT NULL DEFAULT 0
@@ -126,17 +126,6 @@ CREATE TABLE `event` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `interests`
---
-
-CREATE TABLE `interests` (
-  `id` int(11) NOT NULL,
-  `name` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `love_reacts`
 --
 
@@ -144,6 +133,20 @@ CREATE TABLE `love_reacts` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `post_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `notif_text` varchar(255) NOT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -212,17 +215,6 @@ CREATE TABLE `users` (
   `cv` mediumblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_interests`
---
-
-CREATE TABLE `user_interests` (
-  `userId` int(11) NOT NULL,
-  `interestsId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Indexes for dumped tables
 --
@@ -282,18 +274,19 @@ ALTER TABLE `event`
   ADD KEY `clubId` (`clubId`);
 
 --
--- Indexes for table `interests`
---
-ALTER TABLE `interests`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `love_reacts`
 --
 ALTER TABLE `love_reacts`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_id` (`user_id`,`post_id`),
   ADD KEY `fk_loverReacts_post_id` (`post_id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_notifications_user_id` (`user_id`);
 
 --
 -- Indexes for table `posts`
@@ -323,13 +316,6 @@ ALTER TABLE `upvotes`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user_interests`
---
-ALTER TABLE `user_interests`
-  ADD PRIMARY KEY (`userId`,`interestsId`),
-  ADD KEY `interestsId` (`interestsId`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -378,15 +364,15 @@ ALTER TABLE `event`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `interests`
---
-ALTER TABLE `interests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `love_reacts`
 --
 ALTER TABLE `love_reacts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -472,6 +458,12 @@ ALTER TABLE `love_reacts`
   ADD CONSTRAINT `love_reacts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
 -- Constraints for table `posts`
 --
 ALTER TABLE `posts`
@@ -490,13 +482,6 @@ ALTER TABLE `reposts`
 ALTER TABLE `upvotes`
   ADD CONSTRAINT `fk_upvotes_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `upvotes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `user_interests`
---
-ALTER TABLE `user_interests`
-  ADD CONSTRAINT `user_interests_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `user_interests_ibfk_2` FOREIGN KEY (`interestsId`) REFERENCES `interests` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -266,21 +266,17 @@
   display: block; /* Show the button on hover */
 }
 
-.user_reaction {
+/* .user_reaction {
   margin-left: 2vw;
   margin-top: 1vh;
   margin-bottom: 1vh;
   display: flex;
   gap: 2vw;
-}
+} */
 
-ion-icon {
-  font-size: 3vw;
-}
-
-.user_reaction > div {
+/* .user_reaction > div {
   /* background-color: #e5ebee;
-  border-radius: 15px; */
+  border-radius: 15px; 
   width: 8vw;
   height: 6.5vh;
   max-height: 6.5vh;
@@ -302,7 +298,7 @@ ion-icon {
 .user_reaction > div div {
   justify-content: center;
   align-self: center;
-}
+} */
 
 .attend {
   max-width: 30px;

@@ -167,7 +167,7 @@ fetch("includes/getClubRequests.php")
               .then((data) => {
                 if (data.success) {
                   // Handle successful request
-                  console.log("Request submitted successfully:", data.message);
+                  // console.log("Request submitted successfully:", data.message);
                   // You can also clear the form or show a success message to the user
                   document.getElementById("request_text").value = ""; // Clear text area
                   fileInput.value = ""; // Clear file input

@@ -125,7 +125,6 @@ fetch("includes/getPosts.php")
         element.addEventListener("click", function () {
           const action = this.classList[0]; // Gets the class name, e.g., "love"
           const postId = this.closest(".user_reaction").dataset.postId; // Get post ID from parent div
-          console.log(action, postId);
           fetch("includes/update_reaction.php", {
             method: "POST",
             headers: {

@@ -21,11 +21,7 @@ function getEvent(object $pdo, $userId, $clubId)
       SELECT 
           e.id, e.title, e.description1, e.photos, e.date1, 
           c.name AS clubName, c.profile_photo AS clubProfilePhoto,
-          CASE 
-              WHEN c.ownerId = :userId THEN 1
-              WHEN cm.admin = 1 THEN 1
-              ELSE 0
-          END AS is_user_admin
+          (SELECT COUNT(att.id) FROM attending att WHERE att.event_id = e.id) AS attendeeCount
       FROM event e
       LEFT JOIN club c ON e.clubId = c.id
       LEFT JOIN clubmembers cm ON cm.clubId = e.clubId AND cm.userId = :userId

@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ).value;
     const email = document.querySelector("input[name='email']").value;
     const pwd = document.querySelector("input[name='pwd']").value;
-    console.log(fullName, phoneNumber, email, pwd);
 
     if (isNaN(phoneNumber) || !Number.isInteger(parseFloat(phoneNumber))) {
       errors1.innerHTML = "Please enter a valid phone number (numbers only).";

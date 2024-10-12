@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target.classList.contains("delete_post")) {
       const postElement = event.target.closest(".post"); // Find the closest post container
       const postId = parseInt(postElement.getAttribute("data-post-id"));
-      console.log(typeof postId);
       // Confirm before deletion
       if (confirm("Are you sure you want to delete this post?")) {
         // Send AJAX request to delete the post
