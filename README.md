@@ -16,7 +16,7 @@ To set up UniClub locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Joyboy5629/uniclub.git
+   git clone https://github.com/AkremHaddad/uniclub.git
 Navigate to the project directory:
 
 bash
