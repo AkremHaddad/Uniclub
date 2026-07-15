@@ -8,9 +8,14 @@ export function Nav() {
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 border-b">
-      <Link href="/" className="font-semibold">
-        UniClub
-      </Link>
+      <div className="flex items-center gap-6">
+        <Link href="/" className="font-semibold">
+          UniClub
+        </Link>
+        <Link href="/clubs" className="text-sm underline">
+          Clubs
+        </Link>
+      </div>
 
       <div className="flex items-center gap-4 text-sm">
         {status === "loading" ? null : session ? (

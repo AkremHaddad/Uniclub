@@ -50,7 +50,14 @@ Scaffold done — `web/` (Next.js 16, App Router, TypeScript, Tailwind, ESLint).
   - `src/app/login/page.tsx`, `src/app/signup/page.tsx` — minimal functional forms (not the final design pass, just working auth UI).
   - `.env.local.example` updated with `AUTH_SECRET` (generate via `npx auth secret` or `openssl rand -base64 32`).
 - **Verified**: `tsc --noEmit` clean, `eslint` clean, `next build` succeeds (with a placeholder `AUTH_SECRET` env var for the build step only). **Could not do a live/runtime smoke test** (actually signing up and logging in against a real database) — no `MONGODB_URI` is configured yet, Akram needs to create a MongoDB Atlas cluster (or similar) and fill in `.env.local` from the example. Static verification is as far as this could go without those credentials — flagging so this isn't mistaken for "fully tested."
-- **Not done yet**: Club/Event/Post/membership Mongoose models, actual actor-flow pages beyond login/signup, the AI recommendation feature (task 17). Only `web/` changes get committed — the pre-existing `Uniclub-main/`, loose `.sql` dumps, and `Rapport.pdf` stay untracked/uncommitted.
+## Club browsing + join requests added (2026-07-15, same run)
+
+- **Models**: `Club` (name/description/owner), `Event` (club/title/date/location, indexed on `date` for calendar queries), `Post` (club/content), `Membership` (user/club/status — join requests; unique `(user, club)` index so re-requesting doesn't duplicate), `ClubRequest` (requestedBy/name/description/status — the *separate* "register a new club" flow, distinct from joining one: approval creates a `Club` and promotes the requester to `clubOwner`, not implemented yet, just the model).
+- **API**: `GET /api/clubs` (public listing), `GET /api/clubs/[id]` (detail + its posts/events), `POST /api/clubs/[id]/join` (auth-required, creates a pending `Membership`, returns 409 on a duplicate request via the unique index rather than a generic 500).
+- **Pages**: `/clubs` (listing, server component querying Mongo directly — no reason to round-trip through the API route from a server component), `/clubs/[id]` (detail, events + posts, a `JoinClubButton` client component that prompts login if signed out).
+- Both club pages are `export const dynamic = "force-dynamic"` — club data changes often and there's no reason to cache/statically generate them. This is also why `next build` succeeds with no `MONGODB_URI` set: dynamic routes defer DB access to request time rather than needing it at build time.
+- **Verified**: `tsc --noEmit` clean, `eslint` clean, `next build` succeeds. Same caveat as auth: no live smoke test against a real database yet (no `MONGODB_URI` configured).
+- **Not done yet**: club creation flow (the `ClubRequest` → admin-approval → `Club` pipeline), club-owner management (posting, creating events, approving membership requests), admin dashboard, the AI recommendation feature (task 17). Only `web/` changes get committed — the pre-existing `Uniclub-main/`, loose `.sql` dumps, and `Rapport.pdf` stay untracked/uncommitted.
 
 ## Progress Tracking & GitHub Hygiene (standing rules, set 2026-07-14)
 
