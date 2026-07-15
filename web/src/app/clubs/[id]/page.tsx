@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { auth } from "@/auth";
 import { connectToDatabase } from "@/lib/mongodb";
 import { Club } from "@/models/Club";
 import { Post } from "@/models/Post";
@@ -11,6 +13,7 @@ interface ClubDoc {
   _id: string;
   name: string;
   description: string;
+  owner: string;
 }
 interface PostDoc {
   _id: string;
@@ -27,10 +30,13 @@ interface EventDoc {
 
 export default async function ClubDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  const session = await auth();
   await connectToDatabase();
 
   const club = (await Club.findById(id).lean()) as unknown as ClubDoc | null;
   if (!club) notFound();
+
+  const isOwner = session?.user?.id === club.owner.toString();
 
   const [posts, events] = await Promise.all([
     Post.find({ club: id }).sort({ createdAt: -1 }).lean() as unknown as Promise<PostDoc[]>,
@@ -44,7 +50,13 @@ export default async function ClubDetailPage({ params }: { params: Promise<{ id:
           <h1 className="text-2xl font-semibold">{club.name}</h1>
           <p className="text-black/60 dark:text-white/60 mt-1">{club.description}</p>
         </div>
-        <JoinClubButton clubId={id} />
+        {isOwner ? (
+          <Link href={`/clubs/${id}/manage`} className="text-sm underline shrink-0">
+            Manage club
+          </Link>
+        ) : (
+          <JoinClubButton clubId={id} />
+        )}
       </div>
 
       <section>

@@ -68,7 +68,14 @@ Without this, there was no way to ever create a `Club` at all — a real priorit
 - **Pages**: `/clubs/new` (request form, any logged-in user), `/admin/club-requests` (server-side role-gated — checks `session.user.role` before rendering, not just relying on the API's own check, so a non-admin never sees the admin UI shell at all).
 - Nav shows a "Club requests" link only when `session.user.role === "admin"`.
 - **Verified**: `tsc --noEmit` clean, `next build` succeeds. `eslint` initially caught a real issue — `AdminClubRequestsList`'s data-fetching `useEffect` called an outer async function that set state, which trips the `react-hooks/set-state-in-effect` rule; fixed by defining the fetch inside the effect with a cancellation guard (React's recommended pattern, also avoids a set-state-after-unmount bug if the component unmounts mid-fetch) — now clean. Same DB caveat as before: static verification only, no live smoke test without a real `MONGODB_URI`.
-- **Not done yet**: club-owner management (posting, creating events, approving membership requests), the AI recommendation feature (task 17). Only `web/` changes get committed — the pre-existing `Uniclub-main/`, loose `.sql` dumps, and `Rapport.pdf` stay untracked/uncommitted.
+## Club-owner management added (2026-07-15, same run) — closes out the core actor-flow scope
+
+- **`requireClubOwner(clubId)`** added to `auth-helpers.ts`, distinct from `requireRole("clubOwner")`: having the role only means you own *some* club, not this one — every owner-management route checks the specific club's `owner` field against the session, not just the role. Multiple club owners exist in the system, each scoped to their own club.
+- **`POST /api/clubs/[id]/posts`**, **`POST /api/clubs/[id]/events`** — owner-only, create content for their club.
+- **`GET /api/clubs/[id]/members`** (pending join requests) + **`POST .../members/[membershipId]/approve`** / **`.../reject`** — owner-only. The membership lookup is scoped to `{ _id: membershipId, club: id }`, not just the membership's own ID, so an owner can't approve/reject a membership row belonging to a *different* club by guessing/incrementing an ID.
+- **`/clubs/[id]/manage`** page — forms for posts/events + the pending-members list, server-side ownership-gated (same pattern as `/admin/club-requests`: checked before rendering, not just relying on the API). A "Manage club" link replaces the "Request to join" button on the club detail page when the viewer is the owner.
+- **Verified**: `tsc --noEmit` clean, `eslint` clean (applied the effect-cancellation-guard pattern from the previous commit's fix directly this time, no repeat of that lint error), `next build` succeeds, all new routes registered correctly. Same DB caveat as every prior commit here.
+- **This closes out the "core actor flows" scope** (task 18): visitors can browse, students can request to join or request a new club, admins approve club requests, owners manage their club's content and membership. **Remaining for Uniclub**: the AI recommendation feature (task 17) — separate, larger scope.
 
 ## Progress Tracking & GitHub Hygiene (standing rules, set 2026-07-14)
 
