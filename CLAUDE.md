@@ -57,7 +57,18 @@ Scaffold done — `web/` (Next.js 16, App Router, TypeScript, Tailwind, ESLint).
 - **Pages**: `/clubs` (listing, server component querying Mongo directly — no reason to round-trip through the API route from a server component), `/clubs/[id]` (detail, events + posts, a `JoinClubButton` client component that prompts login if signed out).
 - Both club pages are `export const dynamic = "force-dynamic"` — club data changes often and there's no reason to cache/statically generate them. This is also why `next build` succeeds with no `MONGODB_URI` set: dynamic routes defer DB access to request time rather than needing it at build time.
 - **Verified**: `tsc --noEmit` clean, `eslint` clean, `next build` succeeds. Same caveat as auth: no live smoke test against a real database yet (no `MONGODB_URI` configured).
-- **Not done yet**: club creation flow (the `ClubRequest` → admin-approval → `Club` pipeline), club-owner management (posting, creating events, approving membership requests), admin dashboard, the AI recommendation feature (task 17). Only `web/` changes get committed — the pre-existing `Uniclub-main/`, loose `.sql` dumps, and `Rapport.pdf` stay untracked/uncommitted.
+## Club-creation approval pipeline added (2026-07-15, same run)
+
+Without this, there was no way to ever create a `Club` at all — a real priority gap, since browsing/joining has nothing to browse in a fresh deployment.
+
+- **`src/lib/auth-helpers.ts`**: `requireRole(...roles)` — a small RBAC helper (session check + role check + consistent error shape) so route handlers don't each reimplement it.
+- **`POST /api/club-requests`**: any logged-in user submits `{name, description}`; **`GET /api/club-requests`**: admin-only, lists pending requests.
+- **`POST /api/club-requests/[id]/approve`**: admin-only. Does three writes atomically inside a **Mongoose session transaction** — mark the request approved, create the `Club`, promote the requester's `User.role` to `clubOwner`. Named explicitly because it's a real integrity concern, not decorative: without a transaction, a crash between steps could leave an "approved" request with no actual `Club`, or a `Club` with an owner who was never actually promoted. `dbSession.withTransaction()` makes it all-or-nothing.
+- **`POST /api/club-requests/[id]/reject`**: admin-only, single write, no transaction needed.
+- **Pages**: `/clubs/new` (request form, any logged-in user), `/admin/club-requests` (server-side role-gated — checks `session.user.role` before rendering, not just relying on the API's own check, so a non-admin never sees the admin UI shell at all).
+- Nav shows a "Club requests" link only when `session.user.role === "admin"`.
+- **Verified**: `tsc --noEmit` clean, `next build` succeeds. `eslint` initially caught a real issue — `AdminClubRequestsList`'s data-fetching `useEffect` called an outer async function that set state, which trips the `react-hooks/set-state-in-effect` rule; fixed by defining the fetch inside the effect with a cancellation guard (React's recommended pattern, also avoids a set-state-after-unmount bug if the component unmounts mid-fetch) — now clean. Same DB caveat as before: static verification only, no live smoke test without a real `MONGODB_URI`.
+- **Not done yet**: club-owner management (posting, creating events, approving membership requests), the AI recommendation feature (task 17). Only `web/` changes get committed — the pre-existing `Uniclub-main/`, loose `.sql` dumps, and `Rapport.pdf` stay untracked/uncommitted.
 
 ## Progress Tracking & GitHub Hygiene (standing rules, set 2026-07-14)
 

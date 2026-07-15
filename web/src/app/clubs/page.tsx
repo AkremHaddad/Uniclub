@@ -16,7 +16,12 @@ export default async function ClubsPage() {
 
   return (
     <main className="flex-1 max-w-3xl mx-auto w-full p-8">
-      <h1 className="text-2xl font-semibold mb-6">Clubs</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-semibold">Clubs</h1>
+        <Link href="/clubs/new" className="text-sm underline">
+          Register a new club
+        </Link>
+      </div>
 
       {clubs.length === 0 ? (
         <p className="text-black/60 dark:text-white/60">No clubs yet.</p>

@@ -20,6 +20,11 @@ export function Nav() {
       <div className="flex items-center gap-4 text-sm">
         {status === "loading" ? null : session ? (
           <>
+            {session.user?.role === "admin" && (
+              <Link href="/admin/club-requests" className="underline">
+                Club requests
+              </Link>
+            )}
             <span className="text-black/60 dark:text-white/60">
               {session.user?.name} ({session.user?.role})
             </span>
