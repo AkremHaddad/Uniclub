@@ -9,6 +9,8 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [studyField, setStudyField] = useState("");
+  const [interests, setInterests] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -20,7 +22,13 @@ export default function SignupPage() {
     const res = await fetch("/api/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        studyField,
+        interests: interests.split(",").map((i) => i.trim()).filter(Boolean),
+      }),
     });
 
     setLoading(false);
@@ -64,6 +72,20 @@ export default function SignupPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
           minLength={8}
+          className="border rounded-md px-3 py-2"
+        />
+        <input
+          type="text"
+          placeholder="Study field (optional)"
+          value={studyField}
+          onChange={(e) => setStudyField(e.target.value)}
+          className="border rounded-md px-3 py-2"
+        />
+        <input
+          type="text"
+          placeholder="Interests, comma-separated (optional — powers club recommendations)"
+          value={interests}
+          onChange={(e) => setInterests(e.target.value)}
           className="border rounded-md px-3 py-2"
         />
         <button

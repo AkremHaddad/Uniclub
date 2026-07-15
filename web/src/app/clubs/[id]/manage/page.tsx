@@ -5,6 +5,7 @@ import { Club } from "@/models/Club";
 import { ManageClubPosts } from "@/components/ManageClubPosts";
 import { ManageClubEvents } from "@/components/ManageClubEvents";
 import { ManageClubMembers } from "@/components/ManageClubMembers";
+import { ManageClubTags } from "@/components/ManageClubTags";
 
 export const dynamic = "force-dynamic";
 
@@ -29,6 +30,11 @@ export default async function ManageClubPage({ params }: { params: Promise<{ id:
   return (
     <main className="flex-1 max-w-2xl mx-auto w-full p-8 flex flex-col gap-10">
       <h1 className="text-2xl font-semibold">Manage {club.name}</h1>
+
+      <section>
+        <h2 className="text-lg font-medium mb-3">Tags</h2>
+        <ManageClubTags clubId={id} initialTags={club.tags ?? []} />
+      </section>
 
       <section>
         <h2 className="text-lg font-medium mb-3">New post</h2>

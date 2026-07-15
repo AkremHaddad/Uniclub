@@ -8,6 +8,13 @@ export async function POST(request: Request) {
   const name = typeof body?.name === "string" ? body.name.trim() : "";
   const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
   const password = typeof body?.password === "string" ? body.password : "";
+  const studyField = typeof body?.studyField === "string" ? body.studyField.trim() : "";
+  // Optional at signup, per the report — used only by the recommendation
+  // feature to match against club tags, so leaving it blank just means no
+  // recommendations rather than blocking signup.
+  const interests: string[] = Array.isArray(body?.interests)
+    ? body.interests.filter((i: unknown): i is string => typeof i === "string" && i.trim().length > 0).map((i: string) => i.trim().toLowerCase())
+    : [];
 
   if (!name || !email || !password) {
     return NextResponse.json({ error: "Name, email, and password are required." }, { status: 400 });
@@ -28,7 +35,7 @@ export async function POST(request: Request) {
   // Everyone signs up as a student; becoming a club owner or admin is a
   // separate, deliberate action (creating/being granted a club, or manual
   // promotion by an admin) — not something set at signup time.
-  await User.create({ name, email, passwordHash, role: "student" });
+  await User.create({ name, email, passwordHash, role: "student", studyField, interests });
 
   return NextResponse.json({ success: true }, { status: 201 });
 }

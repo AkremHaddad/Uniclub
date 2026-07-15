@@ -75,7 +75,18 @@ Without this, there was no way to ever create a `Club` at all — a real priorit
 - **`GET /api/clubs/[id]/members`** (pending join requests) + **`POST .../members/[membershipId]/approve`** / **`.../reject`** — owner-only. The membership lookup is scoped to `{ _id: membershipId, club: id }`, not just the membership's own ID, so an owner can't approve/reject a membership row belonging to a *different* club by guessing/incrementing an ID.
 - **`/clubs/[id]/manage`** page — forms for posts/events + the pending-members list, server-side ownership-gated (same pattern as `/admin/club-requests`: checked before rendering, not just relying on the API). A "Manage club" link replaces the "Request to join" button on the club detail page when the viewer is the owner.
 - **Verified**: `tsc --noEmit` clean, `eslint` clean (applied the effect-cancellation-guard pattern from the previous commit's fix directly this time, no repeat of that lint error), `next build` succeeds, all new routes registered correctly. Same DB caveat as every prior commit here.
-- **This closes out the "core actor flows" scope** (task 18): visitors can browse, students can request to join or request a new club, admins approve club requests, owners manage their club's content and membership. **Remaining for Uniclub**: the AI recommendation feature (task 17) — separate, larger scope.
+- **This closes out the "core actor flows" scope** (task 18): visitors can browse, students can request to join or request a new club, admins approve club requests, owners manage their club's content and membership.
+
+## AI recommendation feature added (2026-07-15, same run) — closes out Uniclub's planned scope
+
+Kept deliberately honest about what this is: **content-based filtering** (score = count of overlapping tags between a student's `interests` and a club's `tags`), not a trained model — the original report never specified the technique, just the outcome ("recommendations"), and this is the simplest thing that actually works for a small club catalog. Same philosophy as Spendo's planned "smart alerts": real, explainable, not oversold as "AI" beyond what it is.
+
+- **`Club.tags: string[]`** added (indexed) — set by the owner via a new "Tags" section on `/clubs/[id]/manage` (`PATCH /api/clubs/[id]`, owner-only via `requireClubOwner`).
+- **`User.interests`** (already existed on the model from the scaffold, unused until now) is now actually collected — added optional `studyField`/`interests` fields to the signup form and API.
+- **`GET /api/recommendations`**: for the logged-in user, finds clubs whose `tags` overlap their `interests`, excludes clubs they're already a member of (approved or pending — recommendations should surface something *new*), scores by overlap count, returns top 5. Returns an empty list (not an error) when the user has no interests set.
+- **`RecommendedClubs` component** on `/clubs`: fetches and renders the list, but renders nothing at all (not an empty state) when logged out, loading, or no matches — a quiet section that only appears when it has something real to say, rather than an empty box implying something's broken.
+- **Verified**: `tsc --noEmit` clean (caught and fixed two real implicit-`any` errors on `.lean()`-typed array callbacks — Mongoose's `.lean()` loses some type inference, needed explicit `(i: string)` annotations), `eslint` clean, `next build` succeeds, all routes registered. Same DB caveat as every commit this session.
+- **This closes out Uniclub's full planned scope for this run** — task 17 done alongside task 18. Six commits total: scaffold, auth, browsing/joining, creation pipeline, owner management, recommendations.
 
 ## Progress Tracking & GitHub Hygiene (standing rules, set 2026-07-14)
 

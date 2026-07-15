@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { connectToDatabase } from "@/lib/mongodb";
 import { Club } from "@/models/Club";
+import { RecommendedClubs } from "@/components/RecommendedClubs";
 
 export const dynamic = "force-dynamic"; // club list changes often, no reason to cache
 
@@ -22,6 +23,8 @@ export default async function ClubsPage() {
           Register a new club
         </Link>
       </div>
+
+      <RecommendedClubs />
 
       {clubs.length === 0 ? (
         <p className="text-black/60 dark:text-white/60">No clubs yet.</p>
