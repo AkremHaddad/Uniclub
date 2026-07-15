@@ -37,7 +37,20 @@ Scaffold done — `web/` (Next.js 16, App Router, TypeScript, Tailwind, ESLint).
 - `web/src/models/User.ts` — `User` model with the report's 3 roles (`student`, `clubOwner`, `admin`) plus `studyField`/`interests` fields (the report ties these to the planned AI recommendation feature).
 - `web/.env.local.example`, minimal UniClub-branded placeholder landing page.
 - Verified: `tsc --noEmit` clean, `next build` succeeds, `eslint` clean.
-- **Not done yet**: auth, Club/Event/Post/membership models, actual actor-flow pages, the AI recommendation feature (task 17). Only `web/`, `CLAUDE.md`, and `PROJECT_REPORT.md` get committed from this session — the pre-existing `Uniclub-main/`, loose `.sql` dumps, and `Rapport.pdf` stay untracked/uncommitted (legacy reference clutter, not part of the fresh rebuild).
+- **Committed and pushed**: commit `4aa7791`, clean push (no size issues, unlike PFE). Note: GitHub reports this repo's canonical URL is now `github.com/AkremHaddad/Uniclub.git` (capital U) — the old lowercase URL still redirects, but the remote was updated to the canonical one.
+
+## Auth added (2026-07-15, same run, on top of the scaffold)
+
+- **Auth.js v5 (`next-auth@beta`) with a Credentials provider**, JWT session strategy (no DB session adapter needed), bcrypt password hashing.
+  - `src/auth.ts` — provider config, `authorize()` looks up the user by email and compares the bcrypt hash; `jwt`/`session` callbacks carry `role` from `User.role` into `session.user.role` so pages/middleware can branch on it without a DB round-trip per request.
+  - `src/app/api/auth/[...nextauth]/route.ts` — standard handler re-export.
+  - `src/app/api/signup/route.ts` — creates a user with `role: "student"` always; becoming a club owner or admin is a separate, deliberate action (not a signup-time choice), matching the report's actor model.
+  - `src/types/next-auth.d.ts` — module augmentation so `session.user.role`/`.id` type-check (Auth.js's defaults don't know about these custom fields).
+  - `src/components/Providers.tsx` (wraps the app in `SessionProvider`) and `src/components/Nav.tsx` (shows login/signup links or the logged-in user + role + logout, via `useSession`) — wired into `src/app/layout.tsx`.
+  - `src/app/login/page.tsx`, `src/app/signup/page.tsx` — minimal functional forms (not the final design pass, just working auth UI).
+  - `.env.local.example` updated with `AUTH_SECRET` (generate via `npx auth secret` or `openssl rand -base64 32`).
+- **Verified**: `tsc --noEmit` clean, `eslint` clean, `next build` succeeds (with a placeholder `AUTH_SECRET` env var for the build step only). **Could not do a live/runtime smoke test** (actually signing up and logging in against a real database) — no `MONGODB_URI` is configured yet, Akram needs to create a MongoDB Atlas cluster (or similar) and fill in `.env.local` from the example. Static verification is as far as this could go without those credentials — flagging so this isn't mistaken for "fully tested."
+- **Not done yet**: Club/Event/Post/membership Mongoose models, actual actor-flow pages beyond login/signup, the AI recommendation feature (task 17). Only `web/` changes get committed — the pre-existing `Uniclub-main/`, loose `.sql` dumps, and `Rapport.pdf` stay untracked/uncommitted.
 
 ## Progress Tracking & GitHub Hygiene (standing rules, set 2026-07-14)
 
