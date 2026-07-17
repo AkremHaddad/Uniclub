@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UniClub — web
 
-## Getting Started
+Next.js + MongoDB rebuild of **UniClub**, a platform for university club visibility and student engagement — students discover and join clubs, club owners post updates and run events, admins approve new club registrations. Originally a 2nd-year academic group project (PHP/MySQL), rebuilt solo by Akram on a modern stack. See the repo root [`CLAUDE.md`](../CLAUDE.md) for the full rebuild history and [`PROJECT_REPORT.md`](../PROJECT_REPORT.md) for the original domain spec.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router), **TypeScript**, **Tailwind CSS**
+- **MongoDB** via **Mongoose** (`src/lib/mongodb.ts` — connection singleton, survives dev hot-reload)
+- **Auth.js v5** (Credentials provider, JWT sessions, bcrypt password hashing)
+
+## Actors
+
+- **Student** — browses clubs/events/posts, requests to join a club, requests to register a new club, sets `interests` for recommendations
+- **Club owner** — manages their own club's posts, events, and pending member requests (scoped to *their* club only — see `requireClubOwner` in `src/lib/auth-helpers.ts`)
+- **Admin** — approves or rejects new-club requests (approval atomically creates the `Club` and promotes the requester to `clubOwner` via a Mongoose transaction)
+
+## Features
+
+- Club/event/post browsing (`/clubs`, `/clubs/[id]`)
+- Join-request flow with owner approve/reject
+- Club-registration request → admin approval pipeline (`/clubs/new`, `/admin/club-requests`)
+- Club-owner management console (`/clubs/[id]/manage`) — posts, events, tags, pending members
+- **Recommendations** (`/api/recommendations`) — content-based tag matching between a student's `interests` and each club's `tags`; deliberately simple (overlap count, not a trained model) and explainable, matching the original report's stated feature without overselling it as more than it is
+
+## Getting started
 
 ```bash
+npm install
+cp .env.local.example .env.local   # fill in MONGODB_URI and AUTH_SECRET
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build       # production build
+npm run lint          # eslint
+npx tsc --noEmit       # typecheck
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`AUTH_SECRET`: generate with `npx auth secret` or `openssl rand -base64 32`.
