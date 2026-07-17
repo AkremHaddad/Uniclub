@@ -88,9 +88,13 @@ Kept deliberately honest about what this is: **content-based filtering** (score 
 - **Verified**: `tsc --noEmit` clean (caught and fixed two real implicit-`any` errors on `.lean()`-typed array callbacks — Mongoose's `.lean()` loses some type inference, needed explicit `(i: string)` annotations), `eslint` clean, `next build` succeeds, all routes registered. Same DB caveat as every commit this session.
 - **This closes out Uniclub's full planned scope for this run** — task 17 done alongside task 18. Six commits total: scaffold, auth, browsing/joining, creation pipeline, owner management, recommendations.
 
+## Re-verified 2026-07-17
+
+Separate session, re-checked before adding anything: `tsc --noEmit`, `eslint`, and `next build` (with a placeholder `AUTH_SECRET`) all still clean, all 22 routes register correctly. No code changes needed — only gap left was the README (now done, see below). GitHub flagged **1 moderate Dependabot vulnerability** on push (`https://github.com/AkremHaddad/Uniclub/security/dependabot/1`) — not investigated or fixed this session, worth a look next time this repo is touched.
+
 ## Progress Tracking & GitHub Hygiene (standing rules, set 2026-07-14)
 
-- **Write/maintain a real README.md** for the new build (the old `Uniclub-main/README.md` is actually decent and can be adapted, not necessarily rewritten from scratch).
+- **Write/maintain a real README.md** for the new build — ✅ done 2026-07-17, commit `6ec20e2`, adapted from the old `Uniclub-main/README.md` as suggested here.
 - **Keep `C:\Projects\my profile\Project Summaries\Uniclub.md` (+ generated `.pdf`) up to date** as real implementation work happens — foreground architecture/technique decisions over a plain feature list. See `Project Summaries/_TEMPLATE.md`.
 - **Commit and push after each completed task/subtask** to the existing `AkremHaddad/uniclub` remote (confirmed live).
 - Explain non-obvious architecture/technique decisions as they're made — Akram is using this work to learn architecture/patterns, not just to get working code.
